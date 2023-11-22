@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="../../dist/sandbox.js"></script>
+    <script src="../scripts/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ruslan+Display&display=swap" rel="stylesheet">
     <title>PeoplePerTask</title>
 </head>
@@ -157,86 +160,36 @@
                     <a href="#"><span>Job Apply</span></a>
                 </div>
             </nav>
+            <h1 class="text-red-800">Hello World</h1><h1 class="text-red-800">Hello World</h1>
+            
     <section>
-        <div class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
-            <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
-                <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                    <th class="py-2">Name</th>
-                    <th>Projet</th>
-                    <th>Contact</th>
-                    <th>Deadline</th>
-                    <th></th>
+        <h1 class="text-red-800">Hello World</h1>
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
                 </tr>
-                <tbody id="tbody"></tbody>
-            </table>   
-            <button id="add" class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center px-[4%] rounded-[58px] h-20 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins text-2xl transition-transform duration-200 ease-out hover:scale-110">
-                <svg class="mr-[3%]" xmlns="http://www.w3.org/2000/svg" width="42" height="39" viewBox="0 0 42 39" fill="none">
-                    <path d="M34.594 0H14.2661C10.6408 0 7.69481 2.75595 7.69481 6.14742V7.19847H6.57129C2.94598 7.19847 0 9.95442 0 13.3459V32.3626C0 35.754 2.94598 38.51 6.57129 38.51H26.8992C30.5245 38.51 33.4705 35.754 33.4705 32.3626V31.3115H34.594C38.2193 31.3115 41.1653 28.5556 41.1653 25.1641V6.14742C41.1653 2.75595 38.2193 0 34.594 0ZM30.8576 32.3626C30.8576 34.4036 29.0809 36.0657 26.8992 36.0657H6.57129C4.38957 36.0657 2.61284 34.4036 2.61284 32.3626V13.3459C2.61284 11.3049 4.38957 9.64278 6.57129 9.64278H26.8992C29.0809 9.64278 30.8576 11.3049 30.8576 13.3459V32.3626ZM38.5524 25.1641C38.5524 27.2051 36.7757 28.8672 34.594 28.8672H33.4705V13.3459C33.4705 9.95442 30.5245 7.19847 26.8992 7.19847H10.3077V6.14742C10.3077 4.10643 12.0844 2.4443 14.2661 2.4443H34.594C36.7757 2.4443 38.5524 4.10643 38.5524 6.14742V25.1641Z" fill="white" class="dark:fill-yellow-400"/>
-                    <path d="M22.4378 21.632H18.0417V17.5195C18.0417 16.8473 17.4538 16.2973 16.7353 16.2973C16.0167 16.2973 15.4288 16.8473 15.4288 17.5195V21.632H11.0327C10.3142 21.632 9.72632 22.182 9.72632 22.8541C9.72632 23.5263 10.3142 24.0763 11.0327 24.0763H15.4288V28.1888C15.4288 28.861 16.0167 29.411 16.7353 29.411C17.4538 29.411 18.0417 28.861 18.0417 28.1888V24.0763H22.4378C23.1563 24.0763 23.7442 23.5263 23.7442 22.8541C23.7442 22.182 23.1563 21.632 22.4378 21.632Z" fill="white" class="dark:fill-yellow-400"/>
-                  </svg><p>Add a New Project</p>
-            </button> 
-        </div>
-        <!-- form -->
-        <div class="hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
-           <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
-            <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton" onclick="closeForm()">
-                <img src="../../images/close.svg" alt="close">
-            </button>
-            <div class="py-2 px-10 text-center">
-            <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">Informations</h3>
-                <form class="bg-popup flex flex-col text-gray-500">
-                    <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name" id="name">
-                    <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project" id="project">
-                    <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact" id="contact">
-                    <input class="mb-4 rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline" id="deadline">
-                    <button class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500" type="submit" id="save">save</button>
-                </form>
-            </div>
-           </div>
-        </div>
-
-        <div class="hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formUpdate">
-            <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
-                <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton" onclick="closeForm()">
-                    <img src="../../images/close.svg" alt="close">
-                </button>
-                <div class="py-2 px-10 text-center"> 
-                <h2 class="text-AddC text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">Modifier le projet</h2>
-                    <form id="updateForm" class="bg-popup flex flex-col text-gray-500">
-                        <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name" id="update-name">
-                        <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project" id="update-project">
-                        <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact" id="update-contact">
-                        <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline" id="update-deadline">
-                        <button class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500" type="button" id="update-save">Save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- popup -->
-        <div class="popup hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80">
-            <div class="fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black">
-                <img class="mx-auto w-16 h-16" src="../../images/done.svg" alt="">
-                <p class="mb-[7%]">Your project has been saved successfully</p>
-                <button id="OK">OK</button>
-            </div>
-        </div>
-
-        <div class="popup-delet hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80">
-            <div class="fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black">
-                <img class="mx-auto w-16 h-16" src="../../images/done.svg" alt="">
-                <p class="mb-[7%]">This project has been successfully deleted</p>
-                <button id="OK-D">OK</button>
-            </div>
-        </div>
-        <!-- <div class="hidden search">
-            <div class="flex flex-row justify-between text-xs border-4 w-72 rounded-3xl p-1 dark:bg-indigo-950 dark:border-none">
-                <p class="ml-[6%]">search for anyting</p>
-                <img class="mr-[10%]" src="../images/search-2905 1.svg" alt="search">
-            </div>
-        </div> -->
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+            </tbody>
+        </table>
+        
 </section>
 </main class="bg-slate-50">
 <script>
+        let table = new DataTable('#table_id', {
+    responsive: true
+});
+
 let addButton = document.querySelector("#add");
 let Addform = document.querySelector("#formAdd");
 let popup = document.querySelector(".popup");

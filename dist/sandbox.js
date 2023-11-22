@@ -32,6 +32,36 @@ const handleInitialTheme = () => {
 };
 handleInitialTheme();
 document.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contactform");
+    const handleContactFormSubmission = () => {
+        contactForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(contactForm);
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+            const jsonString = JSON.stringify(jsonData);
+            try {
+                const response = await fetch("http://localhost/contact.php", {
+                    method: "POST",
+                    body: jsonString,
+                });
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log(responseData.message);
+                }
+                else {
+                    console.error("there was an error: " + response);
+                }
+            }
+            catch (error) {
+                throw new Error("an error has occured " + error);
+            }
+        });
+    };
+    //handle contactform submission
+    contactForm && handleContactFormSubmission();
     //dark/light mode switcher
     const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
     const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
