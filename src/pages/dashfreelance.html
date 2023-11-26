@@ -123,7 +123,7 @@
         <div class="modal__container fixed flex z-10 justify-center items-center transition-[0.3s] duration-[ease-in-out] opacity-0 left-2/4 top-2/4">
             <div class="modal flex flex-col justify-center items-center max-w-screen-sm min-w-[28rem] bg-white shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 rounded-lg p-6 gap-2">
               <div class="modal__header flex justify-between items-center w-full text-[#FE8D4D] font-bold first-letter:font-family: system-ui, -apple-system, BlinkMacSystemFont">
-                <h2 class="modal__title font-poppins text-xl">Edit User</h2>
+                <h2 class="modal__title font-poppins text-xl">Edit Freelancer</h2>
                 <button type="button" class="modal__button__close cursor-pointer p-[1rem]">
                     <svg xmlns='http://www.w3.org/2000/svg' height="20px" width="20px" viewBox='0 0 16 16' fill='#FFFFFF'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>
                 </button>
@@ -133,26 +133,54 @@
                 <form id="editUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
                 <div>
-                  <label for="username"></label>
-                  <input type="text" id="username" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Username">
+                  <label for="title"></label>
+                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
                   <div>
-                    <label for="phone"></label>
-                  <input type="text" id="phone" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Phone">
+                    <label for="description"></label>
+                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
                   </div>
                   </div>
-                  <label for="email"></label>
-                  <input type="text" id="email" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Email">
-                  <label for="dob"></label>
-                  <input type="text" id="dob" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Date of birth">
-                  <label for="city"></label>
-                  <input type="text" id="city" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="City">
-                </form>
-              </div>
-              <div class="modal__buttons flex justify-end gap-2 items-center text-base">
-                <button type="button" class="modal__button__footer__close dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none">
+                  <label for="categoryID"></label>
+                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
+                  <div class="modal__buttons flex justify-end gap-2 items-center text-base">
+                <button type="submit" class="modal__button__footer__close dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChange">
                   Submit
                 </button>
+              </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal__container__create fixed flex z-10 justify-center items-center transition-[0.3s] duration-[ease-in-out] opacity-0 left-2/4 top-2/4">
+            <div class="modal flex flex-col justify-center items-center max-w-screen-sm min-w-[28rem] bg-white shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 rounded-lg p-6 gap-2">
+              <div class="modal__header flex justify-between items-center w-full text-[#FE8D4D] font-bold first-letter:font-family: system-ui, -apple-system, BlinkMacSystemFont">
+                <h2 class="modal__title font-poppins text-xl">Create Project</h2>
+                <button type="button" class="modal__button__close__create cursor-pointer p-[1rem]">
+                    <svg xmlns='http://www.w3.org/2000/svg' height="20px" width="20px" viewBox='0 0 16 16' fill='#FFFFFF'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>
+                </button>
+              </div>
+              <hr>
+              <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
+                <form id="postUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
+                  <div class="flex justify-center items-start gap-2 w-[100%]">
+                <div>
+                  <label for="title"></label>
+                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
+                </div>
+                  <div>
+                    <label for="description"></label>
+                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
+                  </div>
+                  </div>
+                  <label for="categoryID"></label>
+                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
+                  <div class="modal__buttons flex justify-end gap-2 items-center text-base">
+                    <button type="submit" class="modal__button__footer__close__create dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChangeCreate">
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -203,17 +231,15 @@
           </div>
         </div>
     </nav>
-    <!-- <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addUser">Add User</button> -->
+    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add freelancer</button>
         </div>
         <table id="table_id" class="display">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>PhoneNumber</th>
-                    <th>Dob</th>
-                    <th>City</th>
+                    <th>freelanceID</th>
+                    <th>freelanceName</th>
+                    <th>skills</th>
+                    <th>userID</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -229,9 +255,9 @@
     */
 
     //fetch users
-  const fetchUsers = async () => {
+  const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost/users.php", {
+      const response = await fetch("http://localhost/freelance.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -245,9 +271,9 @@
   }
 };
 
-const deleteUser = async (id) => {
+const deleteProject = async (id) => {
   try {
-    const response = await fetch(`http://localhost/users.php?id=${id}`, {
+    const response = await fetch(`http://localhost/freelance.php?id=${id}`, {
       method: "DELETE",
     });
 
@@ -262,51 +288,52 @@ const deleteUser = async (id) => {
   }
 };
 
+let table;
+
+const handleDeleteButtonClick = async(event) => {
+    const id =
+        event.target.parentElement.parentElement.parentElement.firstChild
+          .textContent;
+      await deleteProject(id);
+      const updatedData = await fetchProjects();
+      table.clear();
+      table.rows.add(updatedData.content).draw();
+      const deleteButtons = document.querySelectorAll(".deleteButton");
+      deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
+      const editButtons = document.querySelectorAll(".editUser");
+      modal && editButtons.forEach(editUserButton => {
+    editUserButton.addEventListener("click", handleModalTrigger)
+  });
+}
+
 const initializeTable = (data) => {
-  const table = new DataTable("#table_id", {
+    table = new DataTable("#table_id", {
     data: data,
     columns: [
+      { data: "freelanceID" },
+      { data: "freelanceName" },
+      { data: "skills" },
       { data: "userID" },
-      { data: "username" },
-      { data: "email" },
-      { data: "phoneNumber" },
-      { data: "dob" },
-      { data: "city" },
       {
         data: null,
         defaultContent:
-          '<div class="flex gap-2"><button type="button" class="focus:outline-none text-white dark:bg-purple-700 bg-blue-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 addUser">Edit</button><button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040] deleteButton">Delete</button></div>',
+          '<div class="flex gap-2"><button type="button" class="focus:outline-none text-white dark:bg-purple-700 bg-blue-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 editUser">Edit</button><button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040] deleteButton">Delete</button></div>',
       },
     ],
   });
 
   const deleteButtons = document.querySelectorAll(".deleteButton");
-  const editUserButtons = document.querySelectorAll(".addUser");
+  const editButtons = document.querySelectorAll(".editUser");
 
-  const handleDeleteButtonClick = async(event) => {
-    const id =
-        event.target.parentElement.parentElement.parentElement.firstChild
-          .textContent;
-      await deleteUser(id);
-      const updatedData = await fetchUsers();
-      table.clear();
-      table.rows.add(updatedData.content).draw();
-      const deleteButtons = document.querySelectorAll(".deleteButton");
-      deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
-      const editUserButtons = document.querySelectorAll(".addUser");
-      modal && editUserButtons.forEach(editUserButton => {
-    editUserButton.addEventListener("click", handleModalTrigger)
-  });
-}
   deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
-  modal && editUserButtons.forEach(editUserButton => {
+  modal && editButtons.forEach(editUserButton => {
     editUserButton.addEventListener("click", handleModalTrigger)
   });
 };
 
 const updateTable = async () => {
   try {
-    const responseData = await fetchUsers();
+    const responseData = await fetchProjects();
     initializeTable(responseData.content);
   } catch (error) {
     console.error(error);
@@ -318,9 +345,13 @@ updateTable();
 
 //handle dashboard modal
 const modal = document.querySelector(".modal__container");
+const modalCreate = document.querySelector(".modal__container__create")
 const closeBtn = document.querySelector(".modal__button__footer__close");
+const closeCreateBtn = document.querySelector(".modal__button__footer__close__create");
+const headerCreateCloseBtn= document.querySelector(".modal__button__close__create");
 const header = document.getElementsByTagName("nav")[0];
 const headerCloseBtn = document.querySelector(".modal__button__close");
+const createProjectBtn = document.getElementById("addProject");
 
 const createObscureDiv = () => {
   const div = document.createElement("div");
@@ -333,17 +364,96 @@ createObscureDiv();
 const obscure = document.getElementById("opacity");
 
 let searchModalIsOpen = false;
+const editUserForm = document.querySelector("#editUserForm");
+const postUserForm = document.querySelector("#postUserForm");
+
+editUserForm.addEventListener("submit", (event) => event.preventDefault());
+postUserForm.addEventListener("submit", (event) => event.preventDefault());
+
+const updateData = async(id) => {
+    const formData = new FormData(editUserForm);
+      const jsonData = {};
+      formData.forEach((value, key) => {
+          jsonData[key] = value;
+      });
+      const patchData = JSON.stringify(jsonData);
+    try {
+    const response = await fetch(`http://localhost/freelance.php?id=${id}`, {
+      method: "PUT",
+      headers: {
+      "Content-Type": "application/json",
+    },
+    body: patchData,
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      return responseData;
+    } else {
+      console.error("there was an error: " + response.statusText);
+    }
+  } catch (error) {
+    throw new Error("an error has occurred " + error);
+  }
+}
+
+const handleEditSubmitEvent = async (id) => {
+  await updateData(id);
+  const updatedData = await fetchProjects();
+  table.clear();
+  table.rows.add(updatedData.content).draw();
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+  const editButtons = document.querySelectorAll(".editUser");
+  modal && editButtons.forEach(editUserButton => {
+    editUserButton.addEventListener("click", handleModalTrigger)})
+    deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
+}
+
+const postData = async() => {
+    const formData = new FormData(postUserForm);
+      const jsonData = {};
+      formData.forEach((value, key) => {
+          jsonData[key] = value;
+      });
+      const postData = JSON.stringify(jsonData);
+    try {
+    const response = await fetch(`http://localhost/freelance.php`, {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+    },
+    body: postData,
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      return responseData;
+    } else {
+      console.error("there was an error: " + response.statusText);
+    }
+  } catch (error) {
+    throw new Error("an error has occurred " + error);
+  }
+}
+
+const handlePostSubmitEvent = async () => {
+  await postData();
+  const updatedData = await fetchProjects();
+  table.clear();
+  table.rows.add(updatedData.content).draw();
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+  const editButtons = document.querySelectorAll(".editUser");
+  deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
+  modalCreate && editButtons.forEach(editUserButton => {
+    editUserButton.addEventListener("click", handleModalTrigger)
+  });
+}
 
 const handleModalTrigger = (event) => {
   const target = event.target
   const content = target.closest('tr').childNodes;
-const editUserForm = document.querySelector("#editUserForm");
 const inputs = editUserForm.querySelectorAll("input");
 let i = content.length - 3;
 while (i >= 0) {
-  if (i === 2) {
-    [content[i].textContent, content[i + 1].textContent] = [content[i + 1].textContent, content[i].textContent];
-  }
+  if (i === 2) [content[i].textContent, content[i + 1].textContent] = [content[i + 1].textContent, content[i].textContent];
     inputs[i].value = content[i + 1].textContent;
   i--;
 }
@@ -351,6 +461,8 @@ while (i >= 0) {
   modal.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
   obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
   document.body.style.overflow = "hidden";
+  const submitChangeBtn = document.querySelector(".submitChange");
+  submitChangeBtn.addEventListener("click", () => handleEditSubmitEvent(content[0].textContent));
 };
 
 const handleModalClose = (event) => {
@@ -360,10 +472,34 @@ const handleModalClose = (event) => {
   document.body.style.overflow = "visible";
 };
 
+const handleCreateModalTrigger = (event) => {
+  const target = event.target
+  modalCreate.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
+  obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
+  document.body.style.overflow = "hidden";
+  const submitChangeBtn = document.querySelector(".submitChangeCreate");
+  submitChangeBtn.addEventListener("click", handlePostSubmitEvent);
+};
+
+const handleCreateModalClose = (event) => {
+  const target = event.target
+  modalCreate.classList.remove("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
+  obscure.classList.remove('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
+  document.body.style.overflow = "visible";
+};
+
+
 if (modal) {
   closeBtn.addEventListener("click", handleModalClose);
   obscure.addEventListener("click", handleModalClose);
   headerCloseBtn.addEventListener("click", handleModalClose);
+}
+
+if (modalCreate && createProjectBtn) {
+    createProjectBtn.addEventListener("click", handleCreateModalTrigger)
+    closeCreateBtn.addEventListener("click", handleCreateModalClose);
+  obscure.addEventListener("click", handleCreateModalClose);
+  headerCreateCloseBtn.addEventListener("click", handleCreateModalClose);
 }
     </script>
 </footer>

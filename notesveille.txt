@@ -1,0 +1,59 @@
+La Colaboration virtuelle
+
+Le travail a distance: utiliser les manieres de collaboration et logiciels pour travailler depuis son domicile.
+
+Le travail a distance est apparue dans les annee 1970 er 1980 avec lavancement de la technologie.
+
+Le traveil a distance a commencer detre populaire au cours des annee 1990 et 2000 a cause de lavancement qu'on a reconnue avec levenement des manieres de communication.
+
+La pandemie de covid a acceleree considerablement l'adoption du travail a distance.
+
+Avantages:
+- Flexibilite
+- Augmentation de productivite
+- Bassin de talents plus large
+- Amelioration de la satisfaction des employes
+
+Desavantages:
+- Isolement Professionel
+- Difficultes de communication
+- Problems de securite
+- Defis Technologiques
+
+Outils:
+- Communication et collaboration: zoom, slack, Notion
+- Gestion de Project: Asana Trello Jira Toggl Harvest
+- Outils de developement
+- Securite et access a distance
+- Formation a distance
+
+Conseils:
+- Reunions virtuelles
+- Utiliser les outils de collaboration online
+- Documentation du code
+- Preorise le bien etre et equilibre Personnel
+
+
+emetteur => recepteur
+message
+feedback
+coding 
+decoding
+
+
+Boule de nerf: quelqu'un nerveux ou stresse, reagit dune maniere exagere auth situation stressante
+petochard: hesiter a prendre les decisions
+agressif: adopter un comportement hostile
+chef: leader
+bras droit: personne de confiance
+
+Pour bien communiquer il faut:
+Ecoute active
+Clarite
+Adaptabilite
+Empathie
+La communication non verbale
+La gestion des emotions
+
+rumeur
+une information qui ce propage de maniere informelle est non verifie souvant de personne a personne sans quil est des sources fiables il peut etre deformer au fil de temps et peut perdre sa presision d'origine

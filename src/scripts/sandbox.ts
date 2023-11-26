@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     }
+
   //handle contactform submission
   contactForm && handleContactFormSubmission();
   //dark/light mode switcher

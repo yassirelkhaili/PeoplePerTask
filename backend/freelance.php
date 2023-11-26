@@ -12,14 +12,14 @@ $data_json = file_get_contents("php://input");
 $method = $_SERVER["REQUEST_METHOD"]; 
 switch ($method) {
     case "GET":
-        $sql = "SELECT `projectID`, `projectTitle`, `projectDesc`, `categoryID`, `sub_categoryID`, `userID` FROM `sys3`.`projects`"; 
+        $sql = "SELECT `freelanceID`, `freelanceName`, `skills`, `userID` FROM `sys3`.`freelance`"; 
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                $projects = $result->fetch_all(MYSQLI_ASSOC);
+                $freelancers = $result->fetch_all(MYSQLI_ASSOC);
                 http_response_code(200);
-                echo json_encode(['status' => 'success', 'message' => 'projects fetched successfully', 'content' => $projects]);
+                echo json_encode(['status' => 'success', 'message' => 'freelancers fetched successfully', 'content' => $freelancers]);
             } else {
                 http_response_code(400);
                 echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
@@ -33,13 +33,13 @@ switch ($method) {
         break;  
     case "POST": 
         $data = json_decode($data_json);
-        $sql = "INSERT INTO `sys3`.`projects`(projectTitle, projectDesc, categoryID, sub_categoryID, userID) VALUES(?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `sys3`.`freelance`(freelanceName, skills, userID) VALUES(?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("ssiii",$data->projectTitle, $data->projectDesc, $data->categoryID, $data->sub_categoryID, $data->userID);
+            $stmt->bind_param("ssi",$data->freelanceName, $data->skills, $data->userID);
             if ($stmt->execute()) {
                 http_response_code(201);
-                echo json_encode(['status' => 'success', 'message' => 'Project created successfully']);
+                echo json_encode(['status' => 'success', 'message' => 'freelancer created successfully']);
             } else {
                 http_response_code(400);
                 echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
@@ -53,13 +53,13 @@ switch ($method) {
     case "DELETE": 
         $id = $_GET["id"];
         if (isset($id) && is_numeric($id)) {
-            $sql = "DELETE from `sys3`.`projects` WHERE projectID=?";
+            $sql = "DELETE from `sys3`.`freelance` WHERE freelanceID=?";
             $stmt = $mysqli->prepare($sql);
             if ($stmt) {
                 $stmt->bind_param("i", $id);
                 if ($stmt->execute()) {
                     http_response_code(200);
-                    echo json_encode(['status' => 'success', 'message' => 'Project was deleted successfully']);
+                    echo json_encode(['status' => 'success', 'message' => 'freelancer was deleted successfully']);
                 } else {
                     http_response_code(400);
                     echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
@@ -75,13 +75,13 @@ switch ($method) {
                 $data = json_decode($data_json);
                 $id = $_GET["id"];
                 if (isset($id) && is_numeric($id)) {
-                    $sql = "UPDATE `sys3`.`projects` SET `projectTitle` = ?, `projectDesc` = ?, `categoryID` = ?, `sub_categoryID` = ?, `userID` = ? WHERE projectID = ?;";
+                    $sql = "UPDATE `sys3`.`freelance` SET `freelanceName` = ?, `skills` = ?, `userID` = ? WHERE freelanceID = ?;";
                     $stmt = $mysqli->prepare($sql);
                     if ($stmt) {
-                        $stmt->bind_param("ssiiii",$data->projectTitle, $data->projectDesc, $data->categoryID, $data->sub_categoryID, $data->userID, $id);
+                        $stmt->bind_param("ssii",$data->freelanceName, $data->skills, $data->userID, $id);
                         if ($stmt->execute()) {
                             http_response_code(200);
-                            echo json_encode(['status' => 'success', 'message' => 'Project was updated successfully']);
+                            echo json_encode(['status' => 'success', 'message' => 'freelancer was updated successfully']);
                         } else {
                             http_response_code(400);
                             echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
