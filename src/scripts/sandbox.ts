@@ -264,5 +264,67 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const fetchProjects = async() => {
+    try{
+      const response = await fetch("http://localhost/projects.php", {
+        method: "GET",
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        return responseData;
+      } else {
+        console.error("there was an error: " + response);
+      }
+    } catch (error) {
+      throw new Error("an error has occurred " + error);
+    }
+  }
+
+  const fetchFreelancers = async() => {
+    try{
+      const response = await fetch("http://localhost/freelance.php", {
+        method: "GET",
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        return responseData;
+      } else {
+        console.error("there was an error: " + response);
+      }
+    } catch (error) {
+      throw new Error("an error has occurred " + error);
+    }
+  }
+
+  const fetchUsers = async() => {
+    try{
+      const response = await fetch("http://localhost/users.php", {
+        method: "GET",
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        return responseData;
+      } else {
+        console.error("there was an error: " + response);
+      }
+    } catch (error) {
+      throw new Error("an error has occurred " + error);
+    }
+  }
+
+  const updateStats = async() => {
+    const projectNumberContainer = document.getElementById("totalProjects");
+    const freelanceNumberContainer = document.getElementById("totalFreelancers");
+    const usersNumberContainer = document.getElementById("totalUsers");
+    const responseData = await fetchProjects();
+    if (projectNumberContainer) projectNumberContainer.textContent = responseData.content.length; 
+    const responseDatafreelance = await fetchFreelancers();
+    if (freelanceNumberContainer) freelanceNumberContainer.textContent = responseDatafreelance.content.length; 
+    const responseDatausers = await fetchUsers();
+    if (usersNumberContainer) usersNumberContainer.textContent = responseDatausers.content.length;
+}
+
+updateStats();
+
   dashboardToggle?.addEventListener("click", handleDashbardThemeToggle);
 });

@@ -31,13 +31,13 @@
         <li>
           <ul class="justify-center items-center gap-4 hf:flex hidden">
             <li><a href="#"
-                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]">Home</a>
+                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="menu_home">Home</a>
             </li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">Become a
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member">Become a
                 member</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">About
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about">About
                 Us</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">Contact
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact">Contact
                 Us</a></li>
           </ul>
         </li>
@@ -47,17 +47,17 @@
               <form class="relative hs:flex hidden">
                 <input type="text" class="shadow-[0px_4px_16px_0px_#00000014] placeholder:text-[#818181]
                   dark:shadow-none bg-slate-50 rounded-full py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
-                  placeholder="Search Here...">
+                  placeholder="Search Here..." data-translate="search">
                 <button type="submit" class="absolute z-10 top-[10px] right-5"><img src="./images/search-icon.svg"
                     alt="search-icon"></button>
               </form>
             </li>
             <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
               <button type="button"
-                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
+                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]" data-translate="login">Log
                 In</button>
               <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Sign
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="signup">Sign
                 Up</button>
             </li>
             <li>
@@ -113,13 +113,13 @@
         <li>
           <ul class="justify-center items-center gap-4 hf:hidden flex flex-col hs:pb-6">
             <li><a href="#"
-                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]">Home</a>
+                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="home">Home</a>
             </li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">Become a
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member">Become a
                 member</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">About
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about">About
                 Us</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">Contact
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact">Contact
                 Us</a></li>
           </ul>
         </li>
@@ -136,10 +136,10 @@
             </li>
             <li class="flex ht:hidden justify-center items-center gap-3 flex-col">
               <button type="button"
-                class="flex w-[18rem] text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium">Log
+                class="flex w-[18rem] text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium" data-translate="login">Log
                 In</button>
               <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[18rem]">Sign
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[18rem]" data-translate="signup">Sign
                 Up</button>
             </li>
             <li>
@@ -164,13 +164,14 @@
     </nav>
   </header>
   <main class="px-16 herothird:px-8">
+    <button type="button" class="text-white" id="languageToggler">FR</button>
     <section class="flex justify-center items-center hero:flex-row flex-col py-0">
       <div class="hero:w-[60%] w-[100%] flex justify-center items-start flex-col gap-6">
         <div>
           <h1
-            class="herothird:text-[40px] herosecond:text-[50px] text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50">
-            Unlock Your <span class="dark:text-mainPurple text-mainBlue">Freelance</span> Potential <span
-              class="dark:text-mainPurple text-mainBlue">Today!</span>
+            class="herothird:text-[40px] herosecond:text-[50px] text-[60px] font-poppins font-semibold">
+            <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title">Unlock Your</span> <span data-translate="hero_title2" class="dark:text-mainPurple text-mainBlue">Freelance</span> <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title3">Potential</span> <span
+              class="dark:text-mainPurple text-mainBlue" data-translate="hero_title4">Today!</span>
           </h1>
           <p class="dark:text-textGrey text-defaultText">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae corporis<br> eveniet a omnis odit aut
@@ -179,12 +180,12 @@
         </div>
         <div class="flex justify-center items-center gap-6">
           <button type="button"
-            class="text-slate-50 rounded-full bg-mainBlue py-[0.9rem] px-[2rem] flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Discover
+            class="text-slate-50 rounded-full bg-mainBlue py-[0.9rem] px-[2rem] flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="discover">Discover
             Now</button>
           <div class="flex justify-center items-center gap-4">
             <button type="button" class="p-[0.9rem] aspect-square rounded-full dark:bg-slate-50 bg-white"><img
                 src="./images/SVG.svg" alt="playbutton-svg"></button>
-            <p class="text-defaultText dark:text-textGrey">watch video</p>
+            <p class="text-defaultText dark:text-textGrey" data-translate="watch">watch video</p>
           </div>
         </div>
         </div>
@@ -202,10 +203,10 @@
       <section class="flex justify-between items-center hero:flex-row hero:gap-0 gap-6 flex-col pt-12 w-[100%]">
         <div class="w-[50%] hero:max-w-[40%] hf:max-w-[60%] max-w-full heromax:w-[100%] flex justify-between items-start flex-col gap-6">
          <div>
-          <p class="font-normal text-mainBlue dark:text-mainPurple text-[19px] font-poppins">
+          <p class="font-normal text-mainBlue dark:text-mainPurple text-[19px] font-poppins" data-translate="howitworks">
             How it works
           </p>
-          <h2 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-[35px]">
+          <h2 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-[35px]" data-translate="howitworksdesc">
             Easily initiate your quest for a fulfilling job with us.
           </h2>
          </div>
@@ -216,7 +217,7 @@
                 <div class="bg-howitworks1 dark:bg-howitworksdark1 rounded-2xl p-[0.8rem] px-8">
                 <p class="font-poppins font-semibold text-[35px] text-mainPurple">1</p>
                 </div>
-                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]">
+                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks1">
                   Complete Your Profile
                 </h6>
               </div>
@@ -232,7 +233,7 @@
                 <div class="dark:bg-[#141337] bg-[#ecf3fa] rounded-2xl p-[0.8rem] px-8">
                 <p class="font-poppins font-semibold text-[35px] text-[#2B3DC7]">2</p>
                 </div>
-                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]">
+                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks2">
                   Search for Vacancies
                 </h6>
               </div>
@@ -248,7 +249,7 @@
                 <div class="bg-howitworks3 dark:bg-[#152A2D] rounded-2xl p-[0.8rem] px-8">
                 <p class="font-poppins font-semibold text-[35px] text-[#30C736]">3</p>
                 </div>
-                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]">
+                <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks3">
                   Apply for Jobs
                 </h6>
               </div>
@@ -737,6 +738,7 @@
       <script src="./src/scripts/jquery.min.js"></script>
       <script src="./src/scripts/owl.carousel.min.js"></script>
       <script src="./src/scripts/owl.js"></script>
+      <script src="./src/scripts/translate.js"></script>
     </footer>
 </body>
 
