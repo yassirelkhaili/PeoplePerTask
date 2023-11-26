@@ -4,15 +4,15 @@ require "./config/sqli.php";
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 $allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
 if (in_array($origin, $allowedOrigins))
-header("Access-Control-Allow-Origin: " . $origin);
+    header("Access-Control-Allow-Origin: " . $origin);
 header("Access-Control-Allow-Headers: *");
-header("Access-Control-Allow-Methods: *"); 
+header("Access-Control-Allow-Methods: POST, GET, DELETE, PUT");
 header("Content-Type: application/json"); 
 $data_json = file_get_contents("php://input"); 
 $method = $_SERVER["REQUEST_METHOD"]; 
 switch ($method) {
     case "GET":
-        $sql = "SELECT * FROM `sys3`.`users`"; 
+        $sql = "SELECT `userID`, `username`, `email`, `phoneNumber`, `dob`, `city` FROM `sys3`.`users`"; 
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
             if ($stmt->execute()) {
@@ -33,7 +33,7 @@ switch ($method) {
         break;  
     case "POST": 
         $data = json_decode($data_json);
-        $sql = "INSERT INTO `sys3`.`users`(username,passwordHash,email, phoneNumber, dob, city) VALUES(?, ?, ?, ?, ?, ?)"; 
+        $sql = "INSERT INTO `sys3`.`users`(username, passwordHash, email, phoneNumber, dob, city) VALUES(?, ?, ?, ?, ?, ?)"; 
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
             $hashedPassword = password_hash($data->password, PASSWORD_DEFAULT);
@@ -52,14 +52,14 @@ switch ($method) {
         }
     break; 
     case "DELETE": 
-        $id = explode("/", $_SERVER["REQUEST_URI"])[4];
+        $id = $_GET["id"];
         if (isset($id) && is_numeric($id)) {
-            $sql = "DELETE from `sys3`.`users` WHERE id=?";
+            $sql = "DELETE from `sys3`.`users` WHERE userID=?";
             $stmt = $mysqli->prepare($sql);
             if ($stmt) {
                 $stmt->bind_param("i", $id);
                 if ($stmt->execute()) {
-                    http_response_code(204);
+                    http_response_code(200);
                     echo json_encode(['status' => 'success', 'message' => 'User was deleted successfully']);
                 } else {
                     http_response_code(400);
