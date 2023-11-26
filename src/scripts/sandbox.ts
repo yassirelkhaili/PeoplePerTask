@@ -264,53 +264,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const fetchProjects = async() => {
-    try{
-      const response = await fetch("http://localhost/projects.php", {
+  const fetchData = async (url: string) => {
+    try {
+      const response = await fetch(url, {
         method: "GET",
       });
+  
       if (response.ok) {
         const responseData = await response.json();
         return responseData;
       } else {
-        console.error("there was an error: " + response);
+        console.error("There was an error: " + response.status);
       }
     } catch (error) {
-      throw new Error("an error has occurred " + error);
+      console.error("An error has occurred: " + error);
     }
-  }
-
-  const fetchFreelancers = async() => {
-    try{
-      const response = await fetch("http://localhost/freelance.php", {
-        method: "GET",
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        return responseData;
-      } else {
-        console.error("there was an error: " + response);
-      }
-    } catch (error) {
-      throw new Error("an error has occurred " + error);
-    }
-  }
-
-  const fetchUsers = async() => {
-    try{
-      const response = await fetch("http://localhost/users.php", {
-        method: "GET",
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        return responseData;
-      } else {
-        console.error("there was an error: " + response);
-      }
-    } catch (error) {
-      throw new Error("an error has occurred " + error);
-    }
-  }
+  };
+  
+  const fetchProjects = async () => {
+    return fetchData("http://localhost/projects.php");
+  };
+  
+  const fetchFreelancers = async () => {
+    return fetchData("http://localhost/freelance.php");
+  };
+  
+  const fetchUsers = async () => {
+    return fetchData("http://localhost/users.php");
+  };
 
   const updateStats = async() => {
     const projectNumberContainer = document.getElementById("totalProjects");
