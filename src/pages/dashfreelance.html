@@ -132,13 +132,15 @@
               <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
                 <form id="editUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
-                <div>
+                <div class="w-[50%]">
                   <label for="title"></label>
                   <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
-                  <div>
-                    <label for="description"></label>
-                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
+                  <div class="w-[50%]">
+                    <label for="selectuserID"></label>
+                   <select name="userID" id="selectuserID" data-dropdown class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                    <option selected disabled>select user</option>
+                  </select>
                   </div>
                   </div>
                   <label for="categoryID"></label>
@@ -164,14 +166,16 @@
               <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
                 <form id="postUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
-                <div>
+                <div class="w-[50%]">
                   <label for="title"></label>
                   <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
-                  <div>
-                    <label for="description"></label>
-                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
-                  </div>
+                <div class="w-[50%]">
+                  <label for="selectuserID"></label>
+                 <select name="userID" id="selectuserID" data-dropdown class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                  <option selected disabled>select user</option>
+                </select>
+                </div>
                   </div>
                   <label for="categoryID"></label>
                   <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
@@ -289,6 +293,22 @@ const deleteProject = async (id) => {
 };
 
 let table;
+
+const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost/backend/users.php", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      return responseData;
+    } else {
+      console.error("there was an error: " + response);
+    }
+  } catch (error) {
+    throw new Error("an error has occurred " + error);
+  }
+};
 
 const handleDeleteButtonClick = async(event) => {
     const id =
@@ -434,6 +454,30 @@ const postData = async() => {
   }
 }
 
+const handleModalTrigger = (event) => {
+  const target = event.target
+  const content = target.closest('tr').childNodes;
+const inputs = editUserForm.querySelectorAll("input");
+const select = document.getElementById("selectuserID");
+let i;
+if (select) {
+  i = inputs.length - 1;
+} else {
+  i = content.length - 3;
+}
+while (i >= 0) {
+  if (i === 2) [content[i].textContent, content[i + 1].textContent] = [content[i + 1].textContent, content[i].textContent];
+    inputs[i].value = content[i + 1].textContent;
+  i--;
+}
+if (!select) [content[2].textContent, content[3].textContent] = [content[3].textContent, content[2].textContent];
+  modal.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
+  obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
+  document.body.style.overflow = "hidden";
+  const submitChangeBtn = document.querySelector(".submitChange");
+  submitChangeBtn.addEventListener("click", () => handleEditSubmitEvent(content[0].textContent));
+};
+
 const handlePostSubmitEvent = async () => {
   await postData();
   const updatedData = await fetchProjects();
@@ -447,23 +491,22 @@ const handlePostSubmitEvent = async () => {
   });
 }
 
-const handleModalTrigger = (event) => {
-  const target = event.target
-  const content = target.closest('tr').childNodes;
-const inputs = editUserForm.querySelectorAll("input");
-let i = content.length - 3;
-while (i >= 0) {
-  if (i === 2) [content[i].textContent, content[i + 1].textContent] = [content[i + 1].textContent, content[i].textContent];
-    inputs[i].value = content[i + 1].textContent;
-  i--;
+const populateDropdowns = async () => {
+  const dropDowns = document.querySelectorAll("select");
+  console.log(dropDowns)
+  const users = await fetchUsers();
+  
+  users.content.forEach((user) => {
+    const option = document.createElement("option");
+    option.value = user.userID;
+    option.textContent = user.username;
+    dropDowns.forEach((dropdown) => {
+      dropdown.appendChild(option.cloneNode(true)); 
+    });
+  })
 }
-[content[2].textContent, content[3].textContent] = [content[3].textContent, content[2].textContent];
-  modal.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
-  obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
-  document.body.style.overflow = "hidden";
-  const submitChangeBtn = document.querySelector(".submitChange");
-  submitChangeBtn.addEventListener("click", () => handleEditSubmitEvent(content[0].textContent));
-};
+
+populateDropdowns();
 
 const handleModalClose = (event) => {
   const target = event.target

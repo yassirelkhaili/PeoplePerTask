@@ -10,7 +10,7 @@ Welcome to People Per Task, your go-to destination for freelance talent! Our Git
 
 - Light/dark mode toggle
 - User Dashbard
-- Admin Dashboard
+- Dynamic Admin Dashboard
 - Reactive design
 - Home Page
 - Contact Page
@@ -18,6 +18,7 @@ Welcome to People Per Task, your go-to destination for freelance talent! Our Git
 - Sign Up Page
 - About Page
 - Apply Details Page
+- language switcher
 
 ## Screenshots
 
@@ -28,6 +29,10 @@ Welcome to People Per Task, your go-to destination for freelance talent! Our Git
 ![App SignUp](https://i.imgur.com/ZtbSJCI.png)
 
 ![App SignIn](https://i.imgur.com/jk1Djnk.png)
+
+![App Freelancers](https://i.imgur.com/mAhOk9B.png)
+
+![App AddProjects](https://i.imgur.com/b5LG6LZ.png)
 
 ## 🚀 Code Hooligans
 
@@ -76,7 +81,9 @@ Front End Engineer
 
 You can check the Jira tasks and workflow here:
 
-[Jira Board](https://nonesite.atlassian.net/jira/software/projects/PW/boards/3)
+[Jira Board Front-End](https://nonesite.atlassian.net/jira/software/projects/PW/boards/3)
+
+[Jira Board Back-End](https://nonesite.atlassian.net/jira/software/projects/PB/boards/6)
 
 ## Live Demo
 
@@ -111,10 +118,11 @@ npm install
 ```bash
 npm start
 ```
+6. Host the repository using wamp, xamp, laragon or any other software stack solution out there
 
-6. start the dev server using vscode's live server extension
+7. start the dev server using vscode's live server extension
 
-7. why are you still reading this, get to work you lazy cookie
+8. why are you still reading this, get to work you lazy cookie
 
 ### Maintainer 
 
