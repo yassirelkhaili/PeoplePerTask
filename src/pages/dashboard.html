@@ -231,7 +231,7 @@
     //fetch users
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost/users.php", {
+      const response = await fetch("http://localhost/backend/users.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -247,7 +247,7 @@
 
 const deleteUser = async (id) => {
   try {
-    const response = await fetch(`http://localhost/users.php?id=${id}`, {
+    const response = await fetch(`http://localhost/backend/users.php?id=${id}`, {
       method: "DELETE",
     });
 

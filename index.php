@@ -1,3 +1,5 @@
+<?php require("./src/php/translate.php")?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +10,6 @@
     <link rel="stylesheet" href="./global.css">
     <link rel="stylesheet" href="./src/css/owl.carousel.min.css">
     <script src="./dist/sandbox.js"></script>
-    <title>PeoplePerTask</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./dist/output.css">
   <title>PeoplePerTask</title>
 </head>
@@ -31,14 +30,11 @@
         <li>
           <ul class="justify-center items-center gap-4 hf:flex hidden">
             <li><a href="#"
-                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="menu_home">Home</a>
+                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="menu_home"><?php echo translate('menu_home'); ?></a>
             </li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member">Become a
-                member</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about">About
-                Us</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact">Contact
-                Us</a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member"><?php echo translate('menu_member'); ?></a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about"><?php echo translate('menu_about'); ?></a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact"><?php echo translate('menu_contact'); ?></a></li>
           </ul>
         </li>
         <li>
@@ -47,18 +43,16 @@
               <form class="relative hs:flex hidden">
                 <input type="text" class="shadow-[0px_4px_16px_0px_#00000014] placeholder:text-[#818181]
                   dark:shadow-none bg-slate-50 rounded-full py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
-                  placeholder="Search Here..." data-translate="search">
+                  placeholder="<?= translate('search'); ?>" data-translate="search">
                 <button type="submit" class="absolute z-10 top-[10px] right-5"><img src="./images/search-icon.svg"
                     alt="search-icon"></button>
               </form>
             </li>
             <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
               <button type="button"
-                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]" data-translate="login">Log
-                In</button>
+                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]" data-translate="login"><?= translate('login'); ?></button>
               <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="signup">Sign
-                Up</button>
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="signup"><?= translate('signup'); ?></button>
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">
@@ -113,14 +107,11 @@
         <li>
           <ul class="justify-center items-center gap-4 hf:hidden flex flex-col hs:pb-6">
             <li><a href="#"
-                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="home">Home</a>
+                class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]" data-translate="home"><?= translate('menu_home'); ?></a>
             </li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member">Become a
-                member</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about">About
-                Us</a></li>
-            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact">Contact
-                Us</a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_member"><?= translate('menu_member'); ?></a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_about"><?= translate('menu_about'); ?></a></li>
+            <li><a href="#" class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4" data-translate="menu_contact"><?= translate('menu_contact'); ?></a></li>
           </ul>
         </li>
         <li class="hs:hidden flex">
@@ -136,11 +127,9 @@
             </li>
             <li class="flex ht:hidden justify-center items-center gap-3 flex-col">
               <button type="button"
-                class="flex w-[18rem] text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium" data-translate="login">Log
-                In</button>
+                class="flex w-[18rem] text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium" data-translate="login"><?= translate('login'); ?></button>
               <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[18rem]" data-translate="signup">Sign
-                Up</button>
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[18rem]" data-translate="signup"><?= translate('signup'); ?></button>
             </li>
             <li>
               <button id="theme-toggle" type="button"
@@ -164,14 +153,17 @@
     </nav>
   </header>
   <main class="px-16 herothird:px-8">
-    <button type="button" class="text-white" id="languageToggler">FR</button>
+  <form method="GET">
+        <button type="submit" name="lang" value="en" class="text-white">EN</button>
+        <button type="submit" name="lang" value="fr" class="text-white">FR</button>
+    </form>
     <section class="flex justify-center items-center hero:flex-row flex-col py-0">
       <div class="hero:w-[60%] w-[100%] flex justify-center items-start flex-col gap-6">
         <div>
           <h1
             class="herothird:text-[40px] herosecond:text-[50px] text-[60px] font-poppins font-semibold">
-            <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title">Unlock Your</span> <span data-translate="hero_title2" class="dark:text-mainPurple text-mainBlue">Freelance</span> <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title3">Potential</span> <span
-              class="dark:text-mainPurple text-mainBlue" data-translate="hero_title4">Today!</span>
+            <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title"><?php echo translate('hero_title'); ?></span> <span data-translate="hero_title2" class="dark:text-mainPurple text-mainBlue"><?php echo translate('hero_title2'); ?></span> <span class="text-[60px] font-poppins font-semibold text-defaultText dark:text-slate-50" data-translate="hero_title3"><?php echo translate('hero_title3'); ?></span> <span
+              class="dark:text-mainPurple text-mainBlue" data-translate="hero_title4"><?php echo translate('hero_title4'); ?></span>
           </h1>
           <p class="dark:text-textGrey text-defaultText">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae corporis<br> eveniet a omnis odit aut
@@ -180,12 +172,11 @@
         </div>
         <div class="flex justify-center items-center gap-6">
           <button type="button"
-            class="text-slate-50 rounded-full bg-mainBlue py-[0.9rem] px-[2rem] flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="discover">Discover
-            Now</button>
+            class="text-slate-50 rounded-full bg-mainBlue py-[0.9rem] px-[2rem] flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" data-translate="discover"><?= translate('discover'); ?></button>
           <div class="flex justify-center items-center gap-4">
             <button type="button" class="p-[0.9rem] aspect-square rounded-full dark:bg-slate-50 bg-white"><img
                 src="./images/SVG.svg" alt="playbutton-svg"></button>
-            <p class="text-defaultText dark:text-textGrey" data-translate="watch">watch video</p>
+            <p class="text-defaultText dark:text-textGrey" data-translate="watch"><?= translate('watch'); ?></p>
           </div>
         </div>
         </div>
@@ -204,10 +195,10 @@
         <div class="w-[50%] hero:max-w-[40%] hf:max-w-[60%] max-w-full heromax:w-[100%] flex justify-between items-start flex-col gap-6">
          <div>
           <p class="font-normal text-mainBlue dark:text-mainPurple text-[19px] font-poppins" data-translate="howitworks">
-            How it works
+          <?= translate('howitworks'); ?>
           </p>
           <h2 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-[35px]" data-translate="howitworksdesc">
-            Easily initiate your quest for a fulfilling job with us.
+          <?= translate('howitworksdesc'); ?>
           </h2>
          </div>
          <div class="w-[100%]">
@@ -218,7 +209,7 @@
                 <p class="font-poppins font-semibold text-[35px] text-mainPurple">1</p>
                 </div>
                 <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks1">
-                  Complete Your Profile
+                <?= translate('howitworks1'); ?>
                 </h6>
               </div>
               <div>
@@ -234,7 +225,7 @@
                 <p class="font-poppins font-semibold text-[35px] text-[#2B3DC7]">2</p>
                 </div>
                 <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks2">
-                  Search for Vacancies
+                <?= translate('howitworks2'); ?>
                 </h6>
               </div>
               <div>
@@ -250,7 +241,7 @@
                 <p class="font-poppins font-semibold text-[35px] text-[#30C736]">3</p>
                 </div>
                 <h6 class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-[27px]" data-translate="howitworks3">
-                  Apply for Jobs
+                <?= translate('howitworks3'); ?>
                 </h6>
               </div>
               <div>
@@ -738,7 +729,6 @@
       <script src="./src/scripts/jquery.min.js"></script>
       <script src="./src/scripts/owl.carousel.min.js"></script>
       <script src="./src/scripts/owl.js"></script>
-      <script src="./src/scripts/translate.js"></script>
     </footer>
 </body>
 

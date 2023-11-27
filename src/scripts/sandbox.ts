@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const jsonString = JSON.stringify(jsonData);
       try {
-          const response = await fetch("http://localhost/contact.php", {
+          const response = await fetch("http://localhost/backend/contact.php", {
               method: "POST",
               body: jsonString,
           });
@@ -282,15 +282,15 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
   const fetchProjects = async () => {
-    return fetchData("http://localhost/projects.php");
+    return fetchData("http://localhost/backend/projects.php");
   };
   
   const fetchFreelancers = async () => {
-    return fetchData("http://localhost/freelance.php");
+    return fetchData("http://localhost/backend/freelance.php");
   };
   
   const fetchUsers = async () => {
-    return fetchData("http://localhost/users.php");
+    return fetchData("http://localhost/backend/users.php");
   };
 
   const updateStats = async() => {
