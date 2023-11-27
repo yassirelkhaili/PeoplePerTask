@@ -138,7 +138,7 @@
                 </div>
                   <div class="w-[50%]">
                     <label for="selectuserID"></label>
-                   <select name="userID" id="selectuserID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                   <select name="userID" id="selectuserID" data-dropdown class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
                     <option selected disabled>select user</option>
                   </select>
                   </div>
@@ -166,14 +166,16 @@
               <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
                 <form id="postUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
-                <div>
+                <div class="w-[50%]">
                   <label for="title"></label>
                   <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
-                  <div>
-                    <label for="description"></label>
-                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
-                  </div>
+                <div class="w-[50%]">
+                  <label for="selectuserID"></label>
+                 <select name="userID" id="selectuserID" data-dropdown class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                  <option selected disabled>select user</option>
+                </select>
+                </div>
                   </div>
                   <label for="categoryID"></label>
                   <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
@@ -489,18 +491,22 @@ const handlePostSubmitEvent = async () => {
   });
 }
 
-const populateDropdown = async() => {
-  const dropDown = document.querySelector("select");
+const populateDropdowns = async () => {
+  const dropDowns = document.querySelectorAll("select");
+  console.log(dropDowns)
   const users = await fetchUsers();
+  
   users.content.forEach((user) => {
     const option = document.createElement("option");
     option.value = user.userID;
     option.textContent = user.username;
-    dropDown.appendChild(option);
+    dropDowns.forEach((dropdown) => {
+      dropdown.appendChild(option.cloneNode(true)); 
+    });
   })
 }
 
-populateDropdown();
+populateDropdowns();
 
 const handleModalClose = (event) => {
   const target = event.target

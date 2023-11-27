@@ -141,8 +141,12 @@
                   <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="userID" name="userID">
                   </div>
                   </div>
-                  <label for="categoryID"></label>
-                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
+                  <div class="w-[100%]">
+                    <label for="selectuserID"></label>
+                   <select name="categoryID" id="selectuserID" data-categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                    <option selected disabled>select category</option>
+                  </select>
+                  </div>
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                 <button type="submit" class="modal__button__footer__close dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChange">
                   Submit
@@ -175,8 +179,12 @@
                   </div> -->
                   <label for="categoryID"></label>
                   <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="sub_categoryName" name="sub_categoryName">
-                  <label for="categoryID"></label>
-                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="categoryID" name="categoryID">
+                  <div class="w-[100%]">
+                    <label for="selectuserID"></label>
+                   <select name="categoryID" id="selectuserID" data-categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                    <option selected disabled>select category</option>
+                  </select>
+                  </div>
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                     <button type="submit" class="modal__button__footer__close__create dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChangeCreate">
                       Submit
@@ -233,7 +241,7 @@
           </div>
         </div>
     </nav>
-    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add Category</button>
+    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add Sub_category</button>
         </div>
         <table id="table_id" class="display">
             <thead>
@@ -487,6 +495,39 @@ const handleCreateModalClose = (event) => {
   obscure.classList.remove('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
   document.body.style.overflow = "visible";
 };
+
+const fetchCategories = async () => {
+    try {
+      const response = await fetch("http://localhost/backend/categories.php", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      return responseData;
+    } else {
+      console.error("there was an error: " + response);
+    }
+  } catch (error) {
+    throw new Error("an error has occurred " + error);
+  }
+}
+
+const populateDropdowns = async () => {
+  const dropDownsCategories = document.querySelectorAll("[data-categories]");
+  const categories = await fetchCategories();
+
+  categories.content.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.categoryID;
+    option.textContent = category.categoryName;
+
+    dropDownsCategories.forEach((dropdown) => {
+    dropdown.appendChild(option.cloneNode(true));
+    })
+  })
+};
+
+populateDropdowns();
 
 
 if (modal) {
