@@ -255,7 +255,7 @@
     //fetch users
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost/categories.php", {
+      const response = await fetch("http://localhost/backend/categories.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -271,7 +271,7 @@
 
 const deleteProject = async (id) => {
   try {
-    const response = await fetch(`http://localhost/categories.php?id=${id}`, {
+    const response = await fetch(`http://localhost/backend/categories.php?id=${id}`, {
       method: "DELETE",
     });
 
@@ -374,7 +374,7 @@ const updateData = async(id) => {
       });
       const patchData = JSON.stringify(jsonData);
     try {
-    const response = await fetch(`http://localhost/categories.php?id=${id}`, {
+    const response = await fetch(`http://localhost/backend/categories.php?id=${id}`, {
       method: "PUT",
       headers: {
       "Content-Type": "application/json",
@@ -412,7 +412,7 @@ const postData = async() => {
       });
       const postData = JSON.stringify(jsonData);
     try {
-    const response = await fetch(`http://localhost/categories.php`, {
+    const response = await fetch(`http://localhost/backend/categories.php`, {
       method: "POST",
       headers: {
       "Content-Type": "application/json",

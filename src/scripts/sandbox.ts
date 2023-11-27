@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const jsonString = JSON.stringify(jsonData);
       try {
-          const response = await fetch("http://localhost/contact.php", {
+          const response = await fetch("http://localhost/backend/contact.php", {
               method: "POST",
               body: jsonString,
           });
@@ -263,6 +263,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   };
+
+  const fetchData = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        return responseData;
+      } else {
+        console.error("There was an error: " + response.status);
+      }
+    } catch (error) {
+      console.error("An error has occurred: " + error);
+    }
+  };
+  
+  const fetchProjects = async () => {
+    return fetchData("http://localhost/backend/projects.php");
+  };
+  
+  const fetchFreelancers = async () => {
+    return fetchData("http://localhost/backend/freelance.php");
+  };
+  
+  const fetchUsers = async () => {
+    return fetchData("http://localhost/backend/users.php");
+  };
+
+  const updateStats = async() => {
+    const projectNumberContainer = document.getElementById("totalProjects");
+    const freelanceNumberContainer = document.getElementById("totalFreelancers");
+    const usersNumberContainer = document.getElementById("totalUsers");
+    const responseData = await fetchProjects();
+    if (projectNumberContainer) projectNumberContainer.textContent = responseData.content.length; 
+    const responseDatafreelance = await fetchFreelancers();
+    if (freelanceNumberContainer) freelanceNumberContainer.textContent = responseDatafreelance.content.length; 
+    const responseDatausers = await fetchUsers();
+    if (usersNumberContainer) usersNumberContainer.textContent = responseDatausers.content.length;
+}
+
+updateStats();
 
   dashboardToggle?.addEventListener("click", handleDashbardThemeToggle);
 });
