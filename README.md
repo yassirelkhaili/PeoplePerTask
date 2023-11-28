@@ -85,6 +85,16 @@ You can check the Jira tasks and workflow here:
 
 [Jira Board Back-End](https://nonesite.atlassian.net/jira/software/projects/PB/boards/6)
 
+## Figma high-fidelity Wireframes:
+
+You can check the PeoplePerTask Figma Wireframes here:
+
+[Light Mode](https://www.figma.com/file/SwIbGfBQa2EmWebRvQykYM/PeoplePerTask?type=design&node-id=0-1&mode=design&t=bEmUhMAucq63ekLu-0)
+
+[Dark Mode](https://www.figma.com/file/huQvDZegJ3RifhtAnewJaV/PeoplePerTask-Darck-Mode?type=design&node-id=0-1&mode=design&t=erfxPmNEWktOrsZ3-0)
+
+[Dashboard](https://www.figma.com/file/lVscoO7eKRuMm5t8ef5x9m/Fintech-dashboard-(Community)?type=design&node-id=0-1&mode=design&t=YzGBvQQkP8UTlbKV-0)
+
 ## Live Demo
 
 You can check out the live demo here:
