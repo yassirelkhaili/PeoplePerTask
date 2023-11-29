@@ -123,7 +123,7 @@
         <div class="modal__container fixed flex z-10 justify-center items-center transition-[0.3s] duration-[ease-in-out] opacity-0 left-2/4 top-2/4">
             <div class="modal flex flex-col justify-center items-center max-w-screen-sm min-w-[28rem] bg-white shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 rounded-lg p-6 gap-2">
               <div class="modal__header flex justify-between items-center w-full text-[#FE8D4D] font-bold first-letter:font-family: system-ui, -apple-system, BlinkMacSystemFont">
-                <h2 class="modal__title font-poppins text-xl">Edit Project</h2>
+                <h2 class="modal__title font-poppins text-xl">Edit Freelancer</h2>
                 <button type="button" class="modal__button__close cursor-pointer p-[1rem]">
                     <svg xmlns='http://www.w3.org/2000/svg' height="20px" width="20px" viewBox='0 0 16 16' fill='#FFFFFF'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>
                 </button>
@@ -132,33 +132,19 @@
               <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
                 <form id="editUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
-                <div>
+                <div class="w-[50%]">
                   <label for="title"></label>
-                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Title" name="projectTitle">
+                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
-                  <div>
-                    <label for="description"></label>
-                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="description" name="projectDesc">
-                  </div>
-                  </div>
-                  <div class="w-[100%]">
+                  <div class="w-[50%]">
                     <label for="selectuserID"></label>
-                   <select name="categoryID" id="selectuserID" data-categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select category</option>
-                  </select>
-                  </div>
-                    <div class="w-[100%]">
-                    <label for="selectuserID"></label>
-                   <select name="sub_categoryID" id="selectuserID" data-sub_categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select sub_category</option>
-                  </select>
-                  </div>
-                  <div class="w-[100%]">
-                    <label for="selectuserID"></label>
-                   <select name="userID" id="selectuserID" data-users class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                   <select name="userID" id="selectuserID" data-dropdown class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
                     <option selected disabled>select user</option>
                   </select>
                   </div>
+                  </div>
+                  <label for="categoryID"></label>
+                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                 <button type="submit" class="modal__button__footer__close dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChange">
                   Submit
@@ -171,7 +157,7 @@
           <div class="modal__container__create fixed flex z-10 justify-center items-center transition-[0.3s] duration-[ease-in-out] opacity-0 left-2/4 top-2/4">
             <div class="modal flex flex-col justify-center items-center max-w-screen-sm min-w-[28rem] bg-white shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 rounded-lg p-6 gap-2">
               <div class="modal__header flex justify-between items-center w-full text-[#FE8D4D] font-bold first-letter:font-family: system-ui, -apple-system, BlinkMacSystemFont">
-                <h2 class="modal__title font-poppins text-xl">Create Project</h2>
+                <h2 class="modal__title font-poppins text-xl">Create Freelancer</h2>
                 <button type="button" class="modal__button__close__create cursor-pointer p-[1rem]">
                     <svg xmlns='http://www.w3.org/2000/svg' height="20px" width="20px" viewBox='0 0 16 16' fill='#FFFFFF'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>
                 </button>
@@ -180,33 +166,19 @@
               <div class="modal__body flex flex-col justify-center items-start text-slate-50 gap-2 w-[100%]">
                 <form id="postUserForm" class="flex flex-col gap-2 justify-center items-center w-[100%]">
                   <div class="flex justify-center items-start gap-2 w-[100%]">
-                <div>
+                <div class="w-[50%]">
                   <label for="title"></label>
-                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Title" name="projectTitle">
+                  <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="freelancerName" name="freelanceName">
                 </div>
-                  <div>
-                    <label for="description"></label>
-                  <input type="text" id="descripton" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="Description" name="projectDesc">
+                <div class="w-[50%]">
+                  <label for="selectuserID"></label>
+                 <select name="userID" id="selectuserID" data-dropdown class="createUser flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                  <option selected disabled>select user</option>
+                </select>
+                </div>
                   </div>
-                  </div>
-                  <div class="w-[100%]">
-                    <label for="selectuserID"></label>
-                   <select name="categoryID" id="selectuserID" data-categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select category</option>
-                  </select>
-                  </div>
-                    <div class="w-[100%]">
-                    <label for="selectuserID"></label>
-                   <select name="sub_categoryID" id="selectuserID" data-sub_categories class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select sub_category</option>
-                  </select>
-                  </div>
-                  <div class="w-[100%]">
-                    <label for="selectuserID"></label>
-                   <select name="userID" id="selectuserID" data-users class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select user</option>
-                  </select>
-                  </div>
+                  <label for="categoryID"></label>
+                  <input type="text" id="categoryID" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="skills" name="skills">
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                     <button type="submit" class="modal__button__footer__close__create dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChangeCreate">
                       Submit
@@ -263,16 +235,14 @@
           </div>
         </div>
     </nav>
-    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add Projects</button>
+    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add freelancer</button>
         </div>
         <table id="table_id" class="display">
             <thead>
                 <tr>
-                    <th>projectID</th>
-                    <th>projectTitle</th>
-                    <th>projectDesc</th>
-                    <th>categoryID</th>
-                    <th>sub_categoryID</th>
+                    <th>freelanceID</th>
+                    <th>freelanceName</th>
+                    <th>skills</th>
                     <th>userID</th>
                     <th>Actions</th>
                 </tr>
@@ -289,57 +259,9 @@
     */
 
     //fetch users
-    const fetchUsers = async () => {
-    try {
-      const response = await fetch("http://localhost/backend/users.php", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const responseData = await response.json();
-      return responseData;
-    } else {
-      console.error("there was an error: " + response);
-    }
-  } catch (error) {
-    throw new Error("an error has occurred " + error);
-  }
-};
-
-const fetchsub_categories = async () => {
-    try {
-      const response = await fetch("http://localhost/backend/sub_categories.php", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const responseData = await response.json();
-      return responseData;
-    } else {
-      console.error("there was an error: " + response);
-    }
-  } catch (error) {
-    throw new Error("an error has occurred " + error);
-  }
-};
-
-const fetchCategories = async () => {
-    try {
-      const response = await fetch("http://localhost/backend/categories.php", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const responseData = await response.json();
-      return responseData;
-    } else {
-      console.error("there was an error: " + response);
-    }
-  } catch (error) {
-    throw new Error("an error has occurred " + error);
-  }
-}
-
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost/backend/projects.php", {
+      const response = await fetch("http://localhost/backend/freelance.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -355,7 +277,7 @@ const fetchCategories = async () => {
 
 const deleteProject = async (id) => {
   try {
-    const response = await fetch(`http://localhost/backend/projects.php?id=${id}`, {
+    const response = await fetch(`http://localhost/backend/freelance.php?id=${id}`, {
       method: "DELETE",
     });
 
@@ -371,6 +293,22 @@ const deleteProject = async (id) => {
 };
 
 let table;
+
+const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost/backend/users.php", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      return responseData;
+    } else {
+      console.error("there was an error: " + response);
+    }
+  } catch (error) {
+    throw new Error("an error has occurred " + error);
+  }
+};
 
 const handleDeleteButtonClick = async(event) => {
     const id =
@@ -392,11 +330,9 @@ const initializeTable = (data) => {
     table = new DataTable("#table_id", {
     data: data,
     columns: [
-      { data: "projectID" },
-      { data: "projectTitle" },
-      { data: "projectDesc" },
-      { data: "categoryID" },
-      { data: "sub_categoryID" },
+      { data: "freelanceID" },
+      { data: "freelanceName" },
+      { data: "skills" },
       { data: "userID" },
       {
         data: null,
@@ -462,7 +398,7 @@ const updateData = async(id) => {
       });
       const patchData = JSON.stringify(jsonData);
     try {
-    const response = await fetch(`http://localhost/backend/projects.php?id=${id}`, {
+    const response = await fetch(`http://localhost/backend/freelance.php?id=${id}`, {
       method: "PUT",
       headers: {
       "Content-Type": "application/json",
@@ -500,7 +436,7 @@ const postData = async() => {
       });
       const postData = JSON.stringify(jsonData);
     try {
-    const response = await fetch(`http://localhost/backend/projects.php`, {
+    const response = await fetch(`http://localhost/backend/freelance.php`, {
       method: "POST",
       headers: {
       "Content-Type": "application/json",
@@ -518,17 +454,21 @@ const postData = async() => {
   }
 }
 
-const handlePostSubmitEvent = async () => {
-  await postData();
-  const updatedData = await fetchProjects();
-  table.clear();
-  table.rows.add(updatedData.content).draw();
-  const deleteButtons = document.querySelectorAll(".deleteButton");
-  const editButtons = document.querySelectorAll(".editUser");
-  deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
-  modalCreate && editButtons.forEach(editUserButton => {
-    editUserButton.addEventListener("click", handleModalTrigger)
-  });
+const populateDropdowns = async (userID) => {
+  const dropDowns = document.querySelectorAll("select");
+  const users = await fetchUsers();
+
+  users.content.forEach((user) => {
+  const option = document.createElement("option");
+  option.value = user.userID;
+  option.textContent = user.username;
+  if (user.userID === parseInt(userID)) {
+    option.setAttribute("selected", true);
+  }
+  dropDowns.forEach((dropdown) => {
+    dropdown.appendChild(option.cloneNode(true))
+  })
+})
 }
 
 const handleModalTrigger = (event) => {
@@ -536,6 +476,7 @@ const handleModalTrigger = (event) => {
   const content = target.closest('tr').childNodes;
 const inputs = editUserForm.querySelectorAll("input");
 const select = document.getElementById("selectuserID");
+populateDropdowns(content[inputs.length + 1].textContent);
 let i;
 if (select) {
   i = inputs.length - 1;
@@ -555,46 +496,20 @@ if (!select) [content[2].textContent, content[3].textContent] = [content[3].text
   submitChangeBtn.addEventListener("click", () => handleEditSubmitEvent(content[0].textContent));
 };
 
-const populateDropdowns = async () => {
-  const dropDowns = document.querySelectorAll("[data-users]");
-  const dropDownsCategories = document.querySelectorAll("[data-categories]");
-  const dropDownsSubCategories = document.querySelectorAll("[data-sub_categories]");
-  const users = await fetchUsers();
-  const subCategories = await fetchsub_categories();
-  const categories = await fetchCategories();
-
-
-  subCategories.content.forEach((subcategory) => {
-    const option = document.createElement("option");
-    option.value = subcategory.sub_categoryID;
-    option.textContent = subcategory.sub_categoryName;
-    dropDownsSubCategories.forEach((dropdown) => {
-    dropdown.appendChild(option.cloneNode(true));
-    })
-  })
-
-  categories.content.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category.categoryID;
-    option.textContent = category.categoryName;
-
-    dropDownsCategories.forEach((dropdown) => {
-    dropdown.appendChild(option.cloneNode(true));
-    })
-  })
-
-  users.content.forEach((user) => {
-    const option = document.createElement("option");
-    option.value = user.userID;
-    option.textContent = user.username;
-
-    dropDowns.forEach((dropdown) => {
-    dropdown.appendChild(option.cloneNode(true));
-    })
-  }
-  )};
-
 populateDropdowns();
+
+const handlePostSubmitEvent = async () => {
+  await postData();
+  const updatedData = await fetchProjects();
+  table.clear();
+  table.rows.add(updatedData.content).draw();
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+  const editButtons = document.querySelectorAll(".editUser");
+  deleteButtons.forEach((deleteButton) => deleteButton.addEventListener("click", handleDeleteButtonClick));
+  modalCreate && editButtons.forEach(editUserButton => {
+    editUserButton.addEventListener("click", handleModalTrigger)
+  });
+}
 
 const handleModalClose = (event) => {
   const target = event.target
@@ -603,8 +518,19 @@ const handleModalClose = (event) => {
   document.body.style.overflow = "visible";
 };
 
+const depopulateDropdowns = () => {
+  const dropDowns = document.getElementsByTagName("select");
+  let i = 0;
+  while (i < dropDowns[1].children.length - 1) {
+    dropDowns[1].children[i].removeAttribute("selected");
+    i++;
+  }
+  dropDowns[1].children[0].setAttribute("selected", true);
+}
+
 const handleCreateModalTrigger = (event) => {
   const target = event.target
+  depopulateDropdowns();
   modalCreate.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
   obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
   document.body.style.overflow = "hidden";
