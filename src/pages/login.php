@@ -1,3 +1,8 @@
+<?php 
+require("../php/register.php");
+require("../php/login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,7 +167,7 @@
 <main>
     <div class="max-w-2xl  mx-auto  my-12 bg-white p-8 pb-1 mt-16 rounded-xl shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 sm: w-full">
         <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white" >Log in to <span class="text-mainBlue">PeoplePerTask</span></h1>
-        <form action="" class="my-10">
+        <form action="" class="my-10" method="POST">
             <div class="flex flex-col space-y-5">
                 <label for="email">
                     <input id="email" name="email" type="email" class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue" placeholder="Enter email address">
@@ -181,7 +186,10 @@
                         <a href="#" class="font-normal text-sm text-zinc-500 dark:text-gray-300">Forgot Password?</a>
                     </div>
                 </div>
-                <button class="w-full py-3 font-medium text-white bg-mainBlue hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                <div>
+                  <p style="color: red;"><?= $message ?? ""?></p>
+                </div>
+                <button name="login" type="submit" class="w-full py-3 font-medium text-white bg-mainBlue hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                       <span>Login</span>
                 </button>
 
