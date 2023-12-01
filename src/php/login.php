@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset( $_POST["login"])) {
     try {
         $result = $auth->authenticate($email, $password);
         if ($result) {
+            $_SESSION["userID"] = $auth->userID;
             header("Location: ../../");
             exit();
         } else {
