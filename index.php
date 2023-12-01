@@ -1,6 +1,14 @@
 <?php
 require("./src/php/translate.php");
 require("./src/php/index.php");
+require("./src/auth/config/mysqli.php");
+require("./src/auth/utils.php");
+//fetch users
+use Utilities\Utils;
+
+$utils = new Utils($mysqli);
+$freelancers = $utils->fetchFreelancers();
+$projects = $utils->fetchProjects();
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +65,8 @@ require("./src/php/index.php");
                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
                   Profile
                 </a>
-                <?php if ($userInfo["role"] === 3): ?>
-                  <a href="../src/pages/dashboard.php" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
+                <?php if ($userInfo["role"] === 3 || $userInfo["role"] === 1): ?>
+                  <a href='<?= ($userInfo["role"] === 1) ? "../src/pages/dashprojects.php" : "../src/pages/dashboard.php"; ?>' class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
                   Dashboard
                 </a>
                 <?php endif; ?>
@@ -276,7 +284,8 @@ require("./src/php/index.php");
       <button type="button" class="absolute left-[-1.1rem] top-[14rem] customNextBtn z-10 rounded-full w-10 flex justify-center items-center aspect-square dark:bg-mainPurple bg-mainBlue drop-shadow-[0px_19px_29px_0px_#3E357824] shadow-[0px_19px_29px_0px_#3E357824]"><img src="./images/left-arrow.svg" alt="carousel-arrow-left"></button>
       <button type="button" class="absolute right-[-1rem] top-[14rem] z-10 customPrevBtn rounded-full w-10 aspect-square dark:bg-mainPurple bg-mainBlue flex justify-center items-center drop-shadow-[0px_19px_29px_0px_#3E357824] shadow-[0px_19px_29px_0px_#3E357824]"><img src="./images/right-arrow.svg" alt="carousel-arrow-right"></button>
       <div class="owl-carousel">
-        <div class="flex justify-center items-center flex-col gap-6 w-[330px] rounded-[18px] bg-white dark:bg-cardGrey shadow-[0px_2px_28px_0px_#3E35780A] drop-shadow-[0px_2px_28px_0px_#3E35780A] p-7">
+        <?php foreach($freelancers as $freelancer): ?>
+          <div class="flex justify-center items-center flex-col gap-6 w-[330px] rounded-[18px] bg-white dark:bg-cardGrey shadow-[0px_2px_28px_0px_#3E35780A] drop-shadow-[0px_2px_28px_0px_#3E35780A] p-7">
           <div class="flex justify-start items-center gap-4 w-full">
             <div class="flex justify-center items-center relative">
               <img src="./images/avatar-3.jpg.svg" alt="avatar-img">
@@ -284,10 +293,10 @@ require("./src/php/index.php");
             </div>
             <div class="flex justify-center items-start gap-1 flex-col">
               <div>
-                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl">Jennie Smith</p>
+                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl"><?= $freelancer["freelanceName"] ?></p>
               </div>
               <div>
-                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]">Content Writer</p>
+                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]"><?= $freelancer["skills"] ?></p>
               </div>
             </div>
           </div>
@@ -304,90 +313,7 @@ require("./src/php/index.php");
               font-poppins text-base font-semibold">$86/hr</button>
           </div>
         </div>
-        <div class="flex justify-center items-center flex-col gap-6 w-[330px] rounded-[18px] bg-white dark:bg-cardGrey shadow-[0px_2px_28px_0px_#3E35780A] drop-shadow-[0px_2px_28px_0px_#3E35780A] p-7">
-          <div class="flex justify-start items-center gap-4 w-full">
-            <div class="flex justify-center items-center relative">
-              <img src="./images/avatar-3.jpg.svg" alt="avatar-img">
-              <img src="./images/div.profile-online-status.svg" alt="online-status" class="absolute bottom-[-0.4rem] right-0">
-            </div>
-            <div class="flex justify-center items-start gap-1 flex-col">
-              <div>
-                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl">Jennie Smith</p>
-              </div>
-              <div>
-                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]">Content Writer</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-between w-[100%] items-center">
-            <div class="flex justify-center items-center gap-2">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/stargrey.svg" alt="star-grey">
-              <p class="text-defaultText dark:text-slate-50 font-poppins font-bold text-base">4.6</p>
-            </div>
-            <button type="submit" class="text-slate-50 rounded-full bg-[#FE8D4D] py-2 h-[45px] px-6 flex justify-center items-center dark:bg-[#FE8D4D]
-              font-poppins text-base font-semibold">$86/hr</button>
-          </div>
-        </div>
-        <div class="flex justify-center items-center flex-col gap-6 w-[330px] rounded-[18px] bg-white dark:bg-cardGrey shadow-[0px_2px_28px_0px_#3E35780A] drop-shadow-[0px_2px_28px_0px_#3E35780A] p-7">
-          <div class="flex justify-start items-center gap-4 w-full">
-            <div class="flex justify-center items-center relative">
-              <img src="./images/avatar-3.jpg.svg" alt="avatar-img">
-              <img src="./images/div.profile-online-status.svg" alt="online-status" class="absolute bottom-[-0.4rem] right-0">
-            </div>
-            <div class="flex justify-center items-start gap-1 flex-col">
-              <div>
-                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl">Jennie Smith</p>
-              </div>
-              <div>
-                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]">Content Writer</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-between w-[100%] items-center">
-            <div class="flex justify-center items-center gap-2">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/stargrey.svg" alt="star-grey">
-              <p class="text-defaultText dark:text-slate-50 font-poppins font-bold text-base">4.6</p>
-            </div>
-            <button type="submit" class="text-slate-50 rounded-full bg-[#FE8D4D] py-2 h-[45px] px-6 flex justify-center items-center dark:bg-[#FE8D4D]
-              font-poppins text-base font-semibold">$86/hr</button>
-          </div>
-        </div>
-        <div class="flex justify-center items-center flex-col gap-6 w-[330px] rounded-[18px] bg-white dark:bg-cardGrey shadow-[0px_2px_28px_0px_#3E35780A] drop-shadow-[0px_2px_28px_0px_#3E35780A] p-7">
-          <div class="flex justify-start items-center gap-4 w-full">
-            <div class="flex justify-center items-center relative">
-              <img src="./images/avatar-3.jpg.svg" alt="avatar-img">
-              <img src="./images/div.profile-online-status-active.svg" alt="online-status" class="absolute bottom-[-0.4rem] right-0">
-            </div>
-            <div class="flex justify-center items-start gap-1 flex-col">
-              <div>
-                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl">Jennie Smith</p>
-              </div>
-              <div>
-                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]">Content Writer</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-between w-[100%] items-center">
-            <div class="flex justify-center items-center gap-2">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/star.svg" alt="star">
-              <img src="./images/stargrey.svg" alt="star-grey">
-              <p class="text-defaultText dark:text-slate-50 font-poppins font-bold text-base">4.6</p>
-            </div>
-            <button type="submit" class="text-slate-50 rounded-full bg-[#FE8D4D] py-2 h-[45px] px-6 flex justify-center items-center dark:bg-[#FE8D4D]
-              font-poppins text-base font-semibold">$86/hr</button>
-          </div>
-        </div>
+          <?php endforeach; ?>
       </div>
     </section>
     <section class="flex justify-center items-center flex-col pt-12 w-full gap-8">
@@ -396,22 +322,27 @@ require("./src/php/index.php");
         <p class="dark:text-textGrey text-defaultText font-poppins font-normal text-sm text-center max-w-[600px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quia quos vero vel iste tenetur dolor alias sit excepturi. Illo aliquam culpa facilis iusto beatae placeat accusantium non eum minima.</p>
       </div>
       <div class="pt-8 flex justify-center items-center gap-6 flex-wrap">
+      <?php foreach($projects as $project): ?>
         <div class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
           <div class="flex justify-center items-center flex-col gap-4">
             <img src="./images/job-logo-1.png.svg" alt="first-job-logo">
-            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">Database Programmer</h3>
-            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">Maximoz Team</p>
+            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl"><?= $project["ProjectTitle"] ?></h3>
+            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base"><?= $project["username"] ?></p>
           </div>
           <div class="flex justify-center items-center flex-col gap-4 w-full">
             <div class="flex justify-between items-center flex-row w-full">
+              <div style="display: flex; justify-content: center; align-items: center; gap:0.4rem;">
               <img src="./images/List → Item → SVG (4).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">$14,000 - $25,000</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey">/monthly</p>
+              <p class="font-poppins text-[15px] font-medium text-left text-textGrey">Category:</p>
+              </div>
+              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50"><?= $project["categoryName"] ?></p>
             </div>
             <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (5).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">London, England</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey underline">View Maps</p>
+            <div style="display: flex; justify-content: center; align-items: center; gap:0.4rem;">
+              <img src="./images/List → Item → SVG (4).svg" alt="money-bag">
+              <p class="font-poppins text-[15px] font-medium text-left text-textGrey">Sub_category:</p>
+              </div>
+              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50"><?= $project["sub_categoryName"] ?></p>
             </div>
           </div>
           <div class="flex justify-center items-center flex-row w-full gap-4">
@@ -419,75 +350,8 @@ require("./src/php/index.php");
             <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
           </div>
         </div>
-        <div class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
-          <div class="flex justify-center items-center flex-col gap-4">
-            <img src="./images/job-logo-1.png.svg" alt="first-job-logo">
-            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">Database Programmer</h3>
-            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">Maximoz Team</p>
-          </div>
-          <div class="flex justify-center items-center flex-col gap-4 w-full">
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (4).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">$14,000 - $25,000</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey">/monthly</p>
-            </div>
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (5).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">London, England</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey underline">View Maps</p>
-            </div>
-          </div>
-          <div class="flex justify-center items-center flex-row w-full gap-4">
-            <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="./images/SVG (3).svg" alt="heart-emoji"></div>
-            <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
-          </div>
-        </div>
-        <div class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
-          <div class="flex justify-center items-center flex-col gap-4">
-            <img src="./images/job-logo-1.png.svg" alt="first-job-logo">
-            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">Database Programmer</h3>
-            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">Maximoz Team</p>
-          </div>
-          <div class="flex justify-center items-center flex-col gap-4 w-full">
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (4).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">$14,000 - $25,000</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey">/monthly</p>
-            </div>
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (5).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">London, England</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey underline">View Maps</p>
-            </div>
-          </div>
-          <div class="flex justify-center items-center flex-row w-full gap-4">
-            <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="./images/SVG (3).svg" alt="heart-emoji"></div>
-            <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
-          </div>
-        </div>
-        <div class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
-          <div class="flex justify-center items-center flex-col gap-4">
-            <img src="./images/job-logo-1.png.svg" alt="first-job-logo">
-            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">Database Programmer</h3>
-            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">Maximoz Team</p>
-          </div>
-          <div class="flex justify-center items-center flex-col gap-4 w-full">
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (4).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">$14,000 - $25,000</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey">/monthly</p>
-            </div>
-            <div class="flex justify-between items-center flex-row w-full">
-              <img src="./images/List → Item → SVG (5).svg" alt="money-bag">
-              <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">London, England</p>
-              <p class="font-poppins text-[15px] font-medium text-center text-textGrey underline">View Maps</p>
-            </div>
-          </div>
-          <div class="flex justify-center items-center flex-row w-full gap-4">
-            <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="./images/SVG (3).svg" alt="heart-emoji"></div>
-            <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
-          </div>
-        </div>
+          <?php endforeach; ?>
+      </div>
     </section>
     <section class="flex justify-center items-center pt-8">
       <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-3 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[12rem]">View More</button>
