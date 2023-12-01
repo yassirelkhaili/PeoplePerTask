@@ -273,9 +273,9 @@
                     <th>projectID</th>
                     <th>projectTitle</th>
                     <th>projectDesc</th>
-                    <th>categoryID</th>
-                    <th>sub_categoryID</th>
-                    <th>userID</th>
+                    <th>category</th>
+                    <th>sub_category</th>
+                    <th>user</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -395,11 +395,11 @@ const initializeTable = (data) => {
     data: data,
     columns: [
       { data: "projectID" },
-      { data: "projectTitle" },
+      { data: "ProjectTitle" },
       { data: "projectDesc" },
-      { data: "categoryID" },
-      { data: "sub_categoryID" },
-      { data: "userID" },
+      { data: "categoryName" },
+      { data: "sub_categoryName" },
+      { data: "username" },
       {
         data: null,
         defaultContent:
