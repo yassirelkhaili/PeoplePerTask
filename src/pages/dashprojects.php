@@ -1,3 +1,5 @@
+<?php require("../php/protectRoute.php")?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
