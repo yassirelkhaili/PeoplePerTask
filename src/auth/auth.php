@@ -8,6 +8,8 @@ use Exception;
 class Auth
 {
     private $mysqli;
+    public $userID;
+
     public function __construct(mysqli $mysqli)
     {
         $this->mysqli = $mysqli;
@@ -25,7 +27,7 @@ class Auth
     }
     public function authenticate(String $email, String $password)
     {
-        $sql = "SELECT passwordHash FROM `sys3`.`users` WHERE `email` = ?";
+        $sql = "SELECT `userID`, `passwordHash` FROM `sys3`.`users` WHERE `email` = ?";
         $query = $this->mysqli->prepare($sql);
         $query->bind_param("s", $email);
         if (!$query->execute()) {
@@ -36,7 +38,8 @@ class Auth
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             if (password_verify($password, $row["passwordHash"])) {
-                return true;
+                $this->userID = $row["userID"];
+                return TRUE;
             } else {
                 throw $authException;
             }
@@ -45,16 +48,26 @@ class Auth
         }
     }
 
-    public function register(String $email, String $username, String $password, String $phoneNumber, String $dob, String $city)
+    public function fetchUserInfo ($userID) {
+        $sql = "SELECT `email`, `phoneNumber`, `dob`, `city`, `role` FROM `sys3`.`users` WHERE `userID` = ?";
+        $query = $this->mysqli->prepare($sql);
+        $query->bind_param("i", $userID);
+        $query->execute();
+        $result = $query->get_result();
+        $userInfo = $result->fetch_assoc();
+        return $userInfo;
+    }
+ 
+    public function register(String $email, String $username, String $password, String $phoneNumber, String $dob, String $city, int $role)
     {
         if (!$this->emailExists($email)) {
-            $sql = "INSERT INTO `sys3`.`users` (username, passwordHash, email, phoneNumber, dob, city) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `sys3`.`users` (`username`, `passwordHash`, `email`, `phoneNumber`, `dob`, `city`, `role`) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $query = $this->mysqli->prepare($sql);
             if (!$query) {
                 throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
             }
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $query->bind_param("ssssss", $username, $hashedPassword, $email, $phoneNumber, $dob, $city);
+            $query->bind_param("ssssssi", $username, $hashedPassword, $email, $phoneNumber, $dob, $city, $role);
             if (!$query->execute()) {
                 throw new Exception("Execute failed: (" . $query->errno . ") " . $query->error);
             }

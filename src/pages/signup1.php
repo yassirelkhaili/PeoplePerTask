@@ -171,7 +171,7 @@
       <form action="" class="my-10">
         <div class="flex flex-col space-y-5">
           <div class=" flex flex-row items-center gap-8">
-            <a href="./signup2.php?user" class="flex flex-col items-center w-1/2 h-44 bg-white border-zinc-200 border-[0.1rem] p-8 pt-6 rounded-xl text-center font-bold text-xl text-mainBlue font-poppins dark:text-mainPurple  hover:text-white hover:bg-mainBlue hover:border-none  dark:hover:bg-mainPurple dark:hover:text-white dark:bg-cardGrey">
+            <a href="./signup2.php?client" class="flex flex-col items-center w-1/2 h-44 bg-white border-zinc-200 border-[0.1rem] p-8 pt-6 rounded-xl text-center font-bold text-xl text-mainBlue font-poppins dark:text-mainPurple  hover:text-white hover:bg-mainBlue hover:border-none  dark:hover:bg-mainPurple dark:hover:text-white dark:bg-cardGrey">
               <i class="ri-user-3-line font-extralight text-3xl"></i>
               <p>I’m a client, hiring<br>for a project</p>
             </a>

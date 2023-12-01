@@ -1,3 +1,23 @@
+<?php 
+session_start();
+require("../auth/auth.php");
+require("../auth/config/mysqli.php");
+
+use Authentication\Auth;
+
+$auth = new Auth($mysqli);
+if (isset($_SESSION["userID"])) {
+  $userInfo = $auth->fetchUserInfo($_SESSION["userID"]);
+if ($userInfo["role"] !== 3) {
+  header("Location: ../../");
+  exit();
+} 
+} else {
+  header("Location: ../../");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
