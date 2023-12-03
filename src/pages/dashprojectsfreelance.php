@@ -1,4 +1,4 @@
-<?php require("../php/protectRoute.php")?>
+<?php require("../php/protectRoute.php") ?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -285,7 +285,6 @@
           </div>
         </div>
     </nav>
-    <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" id="addProject">Add Projects</button>
         </div>
         <table id="table_id" class="display">
             <thead>
@@ -295,8 +294,6 @@
                     <th>projectDesc</th>
                     <th>category</th>
                     <th>sub_category</th>
-                    <th>user</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
         </table>
@@ -361,7 +358,7 @@ const fetchCategories = async () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost/backend/projects.php", {
+      const response = await fetch("http://localhost/backend/projectsfreelancer.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -419,12 +416,6 @@ const initializeTable = (data) => {
       { data: "projectDesc" },
       { data: "categoryName" },
       { data: "sub_categoryName" },
-      { data: "username" },
-      {
-        data: null,
-        defaultContent:
-          '<div class="flex gap-2"><button type="button" class="focus:outline-none text-white dark:bg-purple-700 bg-blue-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 editUser">Edit</button><button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040] deleteButton">Delete</button></div>',
-      },
     ],
   });
 
