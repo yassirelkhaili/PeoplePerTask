@@ -43,7 +43,7 @@ UI/UX Developer
 ### Bilal Chbanat
 Front End Developer
 ### Yassir Elkhaili
-Front End Engineer
+Full Stack Engineer
 
 ## 🛠 Techs and tools
 <div align="left">
