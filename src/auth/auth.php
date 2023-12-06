@@ -57,6 +57,21 @@ class Auth
         $userInfo = $result->fetch_assoc();
         return $userInfo;
     }
+
+    public function userHasAccess ($userID) {
+        $sql = "SELECT COUNT(*) as projects FROM `sys3`.`projects` WHERE userID = ?";
+        $query = $this->mysqli->prepare($sql);
+        if (!$query) {
+            throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
+        }
+        $query->bind_param("i", $userID);
+        if (!$query->execute()) {
+            throw new Exception("Execute failed: (" . $query->errno . ") " . $query->error);
+        }
+        $result = $query->get_result();
+        $userHasAccess = $result->num_rows > 0;
+        return $userHasAccess;
+    }
  
     public function register(String $email, String $username, String $password, String $phoneNumber, String $dob, String $city, int $role)
     {

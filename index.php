@@ -65,11 +65,26 @@ $projects = $utils->fetchProjects();
                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
                   Profile
                 </a>
-                <?php if ($userInfo["role"] === 3 || $userInfo["role"] === 1): ?>
-                  <a href='<?= ($userInfo["role"] === 1) ? "../src/pages/dashprojects.php" : "../src/pages/dashboard.php"; ?>' class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
+                <?php
+                $dashboardHref = "";
+
+switch ($userInfo["role"]) {
+    case 1:
+        $dashboardHref = "../src/pages/dashprojectsfreelance.php";
+        break;
+    case 3:
+        $dashboardHref = "../src/pages/dashboard.php";
+        break;
+    case 0:
+        $dashboardHref = "../src/pages/dashprojectsclient.php";
+        break;
+    default:
+        break;
+}
+?>
+                  <a href="<?= $dashboardHref ?>" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
                   Dashboard
                 </a>
-                <?php endif; ?>
                 <a href="../src/php/logout.php" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 cursor-pointer">
                   Logout
                 </a>
