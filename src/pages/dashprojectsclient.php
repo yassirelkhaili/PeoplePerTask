@@ -157,9 +157,7 @@
                   </div>
                   <div class="w-[100%]">
                     <label for="selectuserID"></label>
-                   <select name="userID" id="selectuserID" data-users class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option disabled>select user</option>
-                  </select>
+                   <input name="userID" type="hidden" value=<?= $_SESSION["userID"] ?>>
                   </div>
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                 <button type="submit" class="modal__button__footer__close dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChange">
@@ -225,9 +223,7 @@
                   </div>
                   <div class="w-[100%]">
                     <label for="selectuserID"></label>
-                   <select name="userID" id="selectuserID" data-users class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                    <option selected disabled>select user</option>
-                  </select>
+                   <input name="userID" type="hidden" value=<?= $_SESSION["userID"] ?>>
                   </div>
                   <div class="modal__buttons flex justify-end gap-2 items-center text-base">
                     <button type="submit" class="modal__button__footer__close__create dark:bg-mainPurple bg-mainBlue text-white cursor-pointer px-4 py-[0.7rem] rounded-[5px] border-none submitChangeCreate">
@@ -361,7 +357,7 @@ const fetchCategories = async () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost/backend/projects.php", {
+      const response = await fetch("http://localhost/backend/projectsclient.php", {
       method: "GET",
     });
     if (response.ok) {
@@ -651,43 +647,13 @@ const handleDeleteModalTrigger = (event) => {
   document.body.style.overflow = "hidden";
 }
 
-const depopulateDropdowns = () => {
-  const dropDowns = document.getElementsByTagName("select");
-  let j = 3;
-  while (j <= 5) {
-    let i = 0;
-  while (i < dropDowns[j].children.length - 1) {
-    dropDowns[j].children[i].removeAttribute("selected");
-    i++;
-  }
-  dropDowns[j].children[0].setAttribute("selected", true);
-  j++;
-  }
-}
-
 const handleModalTrigger = async (event) => {
-  const target = event.target
-  const content = target.closest('tr').childNodes;
-const inputs = editUserForm.querySelectorAll("input");
-const select = document.getElementById("selectuserID");
-selectOptions(content[inputs.length + 3].textContent, content[inputs.length + 1].textContent, content[inputs.length + 2].textContent);
-let i;
-if (select) {
-  i = inputs.length - 1;
-} else {
-  i = content.length - 3;
-}
-while (i >= 0) {
-  if (i === 2) [content[i].textContent, content[i + 1].textContent] = [content[i + 1].textContent, content[i].textContent];
-    inputs[i].value = content[i + 1].textContent;
-  i--;
-}
-if (!select) [content[2].textContent, content[3].textContent] = [content[3].textContent, content[2].textContent];
-  modal.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
-  obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
-  document.body.style.overflow = "hidden";
-  const submitChangeBtn = document.querySelector(".submitChange");
-  submitChangeBtn.addEventListener("click", () => handleEditSubmitEvent(content[0].textContent));
+  //get userID
+  const userID = event.target.closest('tr').childNodes[0].textContent;
+  const pathname = window.location.pathname;
+  const origin = window.location.origin;
+  //redirect to edit page with userID
+  window.location.href = origin + pathname.substring(0, pathname.indexOf('/', pathname.indexOf('/') + 1)) + "/routes/projectedit.php?id=" + userID;
 };
 
 populateDropdowns();
@@ -709,7 +675,6 @@ const handleDeleteModalClose = (event) => {
 
 const handleCreateModalTrigger = (event) => {
   const target = event.target
-  depopulateDropdowns();
   modalCreate.classList.add("-translate-x-2/4", "transform", "translate-y-[-18rem]", "opacity-[100]");
   obscure.classList.add('fixed', 'flex', 'justify-center', 'items-center', 'h-screen', 'w-screen', 'bg-[rgba(0,0,0,0.5)]', 'opacity-[50]', 'z-[5]', 'transition-[0.3s]', 'duration-[ease-in-out]', 'left-0', 'top-0');
   document.body.style.overflow = "hidden";
