@@ -1,6 +1,20 @@
 <?php
+session_start();
+require("../auth/config/mysqli.php");
+require("../auth/auth.php");
+use Authentication\Auth;
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
     echo htmlspecialchars($_POST["description"], ENT_QUOTES, 'UTF-8');
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
+    $projectID = $_GET["id"];
+    $userID = $_SESSION["userID"];
+    $auth = new Auth($mysqli);
+    if (!$auth->userHasPermission($projectID, $userID)) {
+        header("location: ../../index.php");
+    }
 }
 ?>
 
@@ -45,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../dist/output.css">
     <script src="./tinymce/tinymce.min.js"></script>
+    <script src="../../dist/sandbox.js"></script>
     <title>PeoplePerTask</title>
 </head>
 <body style="background-color: #111827; overflow-x: hidden;">
@@ -71,7 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
                     <option value=<?= $sub_category["sub_categoryID"] ?> <?= intval($sub_category["sub_categoryID"]) === $project["sub_categoryID"] ? 'selected' : '' ?>><?= $sub_category["sub_categoryName"] ?></option>
                 <?php endforeach; ?>
             </select>
-            <label for="desc" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Description:</label>            <textarea name="description" id="desc"></textarea>
+            <label for="desc" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Description:</label>
+            <textarea name="description" id="desc"></textarea>
+            <label for="createtags" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Tags:</label>
+            <div id="tagsContainer" class="bg-white border-none flex flex-wrap justify-start items-center py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
+                <input id="taginput" class="flex-1 outline-none ml-1">
+            </div>
             <button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040]" style="margin-top: 1.2rem;">Submit</button>
         </form>
     </main>
@@ -95,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
                 menubar: 'favs file edit view insert format tools table',
                 content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
             });
-            tinymce.get('#desc').setContent('<p>default tinymce content</p>');
         </script>
     </footer>
 </body>
