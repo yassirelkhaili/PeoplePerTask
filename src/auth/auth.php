@@ -58,19 +58,22 @@ class Auth
         return $userInfo;
     }
 
-    public function userHasAccess ($userID) {
-        $sql = "SELECT COUNT(*) as projects FROM `sys3`.`projects` WHERE userID = ?";
+    public function userHasPermission ($projectID, $userID) {
+        $sql = "SELECT * FROM `sys3`.`projects` WHERE projectID = ?";
         $query = $this->mysqli->prepare($sql);
         if (!$query) {
             throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
         }
-        $query->bind_param("i", $userID);
+        $query->bind_param("i", $projectID);
         if (!$query->execute()) {
             throw new Exception("Execute failed: (" . $query->errno . ") " . $query->error);
         }
         $result = $query->get_result();
-        $userHasAccess = $result->num_rows > 0;
-        return $userHasAccess;
+        if (!$result->num_rows > 0) {
+            throw new Exception("404 not Found");
+        }
+        $project = $result->fetch_assoc();
+        return $project["userID"] === $userID;
     }
  
     public function register(String $email, String $username, String $password, String $phoneNumber, String $dob, String $city, int $role)

@@ -308,4 +308,97 @@ document.addEventListener("DOMContentLoaded", () => {
 updateStats();
 
   dashboardToggle?.addEventListener("click", handleDashbardThemeToggle);
+  //tag system
+  let tags = new Array();
+  //get tags container
+  const tagsContainer = document.getElementById("tagsContainer") as HTMLDivElement;
+  const createTag = (innerText: string): HTMLDivElement => {
+    //create tag container and add classes (styles)
+    const tagClasses = new Array('tag', 'bg-gray-300', 'rounded-md', 'p-2', 'm-1');
+    const tagContainer : HTMLDivElement = document.createElement("div");
+    tagClasses.forEach(tagClass => tagContainer.classList.add(tagClass));
+    //create tag innerText Container and insert text
+    const innerTextContainer : HTMLSpanElement = document.createElement("span");
+    innerTextContainer.textContent = innerText;
+    //create close button
+    const closeBtn : HTMLButtonElement = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.classList.add("pl-1", "removeTag");
+    const closeSvg : HTMLImageElement = new Image();
+    closeSvg.src = "../../images/closeBtnSvg.svg";
+    closeSvg.alt = "close button icon";
+    closeBtn.appendChild(closeSvg);
+    //append elements and return tag
+    tagContainer.appendChild(innerTextContainer);
+    tagContainer.appendChild(closeBtn);
+    return tagContainer;
+  }
+
+  //add tags to tag Array
+  const addTag = (tag: HTMLDivElement) : boolean => {
+    if (tags.length > 12) {
+      alert("Cannot add more than 12 tags");
+      return false;
+    } else {
+      tags.push(tag);
+    }
+    return true;
+  }
+
+  //render tags based on tags Array
+  const renderTags = () => {
+    tags.slice().reverse().forEach(tag => tagsContainer.prepend(tag));
+    // Add delete event listeners
+    const deleteBtns = document.querySelectorAll(".removeTag") as NodeListOf<HTMLButtonElement>;
+    deleteBtns.forEach(deletebtn => deletebtn.addEventListener("click", (event: MouseEvent) => deleteTag(event.target)));
+  };
+
+  // Delete tag
+  const deleteTag = (tag: EventTarget | null) => {
+    const element = (tag as HTMLElement)?.parentElement?.parentElement as HTMLDivElement;
+    const index = tags.indexOf(element);
+    if (index !== -1) {
+      tags.splice(index, 1);
+      tagsContainer.removeChild(element);
+    };
+  };
+
+  //function to post tags;
+ const postTag = async (newTag: string): Promise<string> => {
+  const origin = window.location.origin;
+  const currentUrl= new URL(window.location.href);
+  const projectID = currentUrl.searchParams.get("id");
+  const endpoint = origin + "/backend/tags.php";
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({projectID: projectID, tag: newTag }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to post tag. Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result.message;
+  } catch (error: any) {
+    throw new Error("There was an error posting the tag: " + error.message);
+  }
+};
+
+  //add tag on user enter button press
+  const tagInputField = document.getElementById("taginput") as HTMLInputElement;
+  tagInputField.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      const newTag: HTMLDivElement = createTag(tagInputField.value);
+      if (addTag(newTag)) {
+        postTag(tagInputField.value);
+      }
+      renderTags();
+    }
+  })
+
+  //render tags from tags Array
+  renderTags();
 });
