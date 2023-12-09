@@ -1,5 +1,8 @@
 <?php 
 require "./config/sqli.php";
+require "../src/auth/config/mysqli.php";
+require "../src/auth/utils.php";
+use Utilities\Utils;
 
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 $allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
@@ -31,24 +34,42 @@ switch ($method) {
         }
         $mysqli->close();
         break;  
-    case "POST": 
-        $data = json_decode($data_json);
-        $sql = "INSERT INTO `sys3`.`projects`(projectTitle, projectDesc, categoryID, sub_categoryID, userID) VALUES(?, ?, ?, ?, ?)";
-        $stmt = $mysqli->prepare($sql);
-        if ($stmt) {
-            $stmt->bind_param("ssiii",$data->projectTitle, $data->projectDesc, $data->categoryID, $data->sub_categoryID, $data->userID);
-            if ($stmt->execute()) {
-                http_response_code(201);
-                echo json_encode(['status' => 'success', 'message' => 'Project created successfully']);
-            } else {
-                http_response_code(400);
-                echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
+        case "POST": 
+            $data = json_decode($data_json);
+            $util = new utils($mysqli);
+            $tableName = "skills";
+            $columnName = "skill_name";
+            $projectSkillsTableName = "project_skills";
+            $projectID = $data->projectID;
+            foreach ($data->tags as $tag) {
+                try {
+                    $skillID = $util->insertIFNotExists($tableName, $columnName, $tag);
+                    $util->associateProjectSkill($projectSkillsTableName, $projectID, $skillID);
+                } catch (Exception $exception) {
+                    http_response_code(500);
+                    echo json_encode(['status'=> 'error','message'=> $exception->getMessage()]);
+                    exit();
+                }
             }
-            $stmt->close();
-        } else {
-            http_response_code(500);
-            echo json_encode(['status'=> 'error','message'=> "Error preparing statement: " . $mysqli->error]);
-        }
+            http_response_code(200);
+            echo json_encode(['status'=> 'success','message'=> "Tags and associations inserted successfully"]);
+            break;
+        // $sql = "INSERT INTO `sys3`.`projects`(projectTitle, projectDesc, categoryID, sub_categoryID, userID) VALUES(?, ?, ?, ?, ?)";
+        // $stmt = $mysqli->prepare($sql);
+        // if ($stmt) {
+        //     $stmt->bind_param("ssiii",$data->projectTitle, $data->projectDesc, $data->categoryID, $data->sub_categoryID, $data->userID);
+        //     if ($stmt->execute()) {
+        //         http_response_code(201);
+        //         echo json_encode(['status' => 'success', 'message' => 'skills added successfully']);
+        //     } else {
+        //         http_response_code(400);
+        //         echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
+        //     }
+        //     $stmt->close();
+        // } else {
+        //     http_response_code(500);
+        //     echo json_encode(['status'=> 'error','message'=> "Error preparing statement: " . $mysqli->error]);
+        // }
     break; 
     case "DELETE": 
         $id = $_GET["id"];
