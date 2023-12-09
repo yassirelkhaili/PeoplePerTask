@@ -269,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dashboardToggle?.addEventListener("click", handleDashbardThemeToggle);
     //tag system
     let tags = new Array();
+    let tagNames = new Array();
     //get tags container
     const tagsContainer = document.getElementById("tagsContainer");
     const createTag = (innerText) => {
@@ -320,8 +321,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ;
     };
+    //function to save tagNames on add
+    const saveTagName = (tagName) => { tagNames.push(tagName); };
+    //add tag on user enter button press
+    const tagInputField = document.getElementById("taginput");
+    const addTagButton = document.getElementById("submitTag");
+    addTagButton && addTagButton.addEventListener("click", (event) => {
+        const tagName = tagInputField.value;
+        const newTag = createTag(tagName);
+        if (addTag(newTag)) {
+            saveTagName(tagName);
+        }
+        renderTags();
+    });
+    //render tags from tags Array
+    renderTags();
     //function to post tags;
-    const postTag = async (newTag) => {
+    const postTags = async () => {
         const origin = window.location.origin;
         const currentUrl = new URL(window.location.href);
         const projectID = currentUrl.searchParams.get("id");
@@ -332,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ projectID: projectID, tag: newTag }),
+                body: JSON.stringify({ projectID: projectID, tags: tagNames }),
             });
             if (!response.ok) {
                 throw new Error(`Failed to post tag. Status: ${response.status}`);
@@ -344,17 +360,11 @@ document.addEventListener("DOMContentLoaded", () => {
             throw new Error("There was an error posting the tag: " + error.message);
         }
     };
-    //add tag on user enter button press
-    const tagInputField = document.getElementById("taginput");
-    tagInputField.addEventListener("keyup", (event) => {
-        if (event.key === "Enter") {
-            const newTag = createTag(tagInputField.value);
-            if (addTag(newTag)) {
-                postTag(tagInputField.value);
-            }
-            renderTags();
-        }
-    });
-    //render tags from tags Array
-    renderTags();
+    //handle form submission
+    const editForm = document.getElementById("submitForm");
+    editForm.addEventListener("submit", (event) => handleEditFormSubmission(event));
+    const handleEditFormSubmission = (event) => {
+        event.preventDefault();
+        postTags();
+    };
 });

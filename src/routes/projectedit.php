@@ -59,7 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../dist/output.css">
     <script src="./tinymce/tinymce.min.js"></script>
-    <script src="../../dist/sandbox.js"></script>
+    <script src="../../dist\sandbox.js"></script>
+
     <title>PeoplePerTask</title>
 </head>
 <body style="background-color: #111827; overflow-x: hidden;">
@@ -67,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
         <h1 class="text-center text-2xl mb-4 text-[#FE8D4D]">Edit Project</h1>
     </header>
     <main style="width: 100vw; display: flex; justify-content: center; align-items: center;">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="flex justify-center items-start flex-col" style="max-width: 800px;" enctype="multipart/form-data">
+        <form id="submitForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="flex justify-center items-start flex-col" style="max-width: 800px;" enctype="multipart/form-data">
             <label for="desc" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Title:</label> 
             <input type="text" id="title" class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText" placeholder="title" value=<?= $project["projectTitle"] ?>>
             <label for="desc" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Image:</label>
@@ -89,10 +90,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
             <label for="desc" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Description:</label>
             <textarea name="description" id="desc"></textarea>
             <label for="createtags" class="text-xl text-[#FE8D4D]" style="padding-bottom: 1rem; padding-top: 1rem;">Tags:</label>
+            <div class="flex gap-2">
             <div id="tagsContainer" class="bg-white border-none flex flex-wrap justify-start items-center py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple text-defaultText">
-                <input id="taginput" class="flex-1 outline-none ml-1">
+                <input id="taginput" class="flex-1 outline-none ml-1 bg-white">
             </div>
-            <button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040]" style="margin-top: 1.2rem;">Submit</button>
+            <div class="buttonContainer">
+            <button type="button" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040]" style="margin-top: 1.2rem; " id="submitTag">Add tag</button>
+            </div>
+            </div>
+            <button type="submit" class="focus:outline-none text-white bg-[#FE8D4D] hover:bg-[#F18040] focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-[#F18040]" style="margin-top: 1.2rem;" id="submitBtn">Submit</button>
         </form>
     </main>
     <footer>
@@ -104,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
                 placeholder: "description",
                 plugins: [
                     'advlist', 'autolink', 'link', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                    'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'emoticons', 'template', 'codesample'
+                    'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'emoticons', 'codesample'
                 ],
                 toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify |' +
                     'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
