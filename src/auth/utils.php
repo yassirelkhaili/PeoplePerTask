@@ -13,7 +13,7 @@ class Utils {
     }
 
     public function fetchFreelancers() {
-        $sql = "SELECT `freelanceName`, `skills` FROM `sys3`.`freelance`";
+        $sql = "SELECT `username` FROM `sys3`.`users` WHERE `role` = 1";
         $query = $this->mysqli->prepare($sql);
         if (!$query) {
             throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
@@ -26,7 +26,7 @@ class Utils {
     }
 
     public function fetchProjects() {
-        $sql = "SELECT `projects`.`ProjectTitle`, `projects`.`projectDesc`, `users`.`username`, `categories`.`categoryName`, `sub_categories`.`sub_categoryName` FROM `sys3`.`projects` JOIN `users` ON `projects`.`UserID` = `users`.`UserID` JOIN `categories` ON `projects`.`CategoryID` = `categories`.`CategoryID` JOIN `sub_categories` ON `projects`.`sub_categoryID` = `sub_categories`.`sub_categoryID`";
+        $sql = "SELECT `projects`.`projectTitle`,`projects`.`projectID`, `projects`.`projectDesc`, `users`.`username`, `categories`.`categoryName`, `sub_categories`.`sub_categoryName` FROM `sys3`.`projects` JOIN `users` ON `projects`.`UserID` = `users`.`UserID` JOIN `categories` ON `projects`.`CategoryID` = `categories`.`CategoryID` JOIN `sub_categories` ON `projects`.`sub_categoryID` = `sub_categories`.`sub_categoryID`";
         $query = $this->mysqli->prepare($sql);
         if (!$query) {
             throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
@@ -70,7 +70,9 @@ class Utils {
             throw new Exception("Prepare failed: (" . $this->mysqli->errno . ") " . $this->mysqli->error);
         }
         $checkStmt->bind_param("ii", $projectID, $skillID);
-        $checkStmt->execute();
+        if (!$checkStmt->execute()) {
+            throw new Exception("Execute failed: (" . $checkStmt->errno . ") " . $checkStmt->error);
+        }
         $checkStmt->bind_result($count);
         $checkStmt->fetch();
         $checkStmt->close();

@@ -4,7 +4,7 @@ namespace fetchdata;
 use Exception;
 use mysqli;
 
-class fetch {
+class Fetch {
     private mysqli $mysqli;
     public function __construct(mysqli $mysqli) { 
         $this->mysqli = $mysqli;
@@ -22,7 +22,7 @@ class fetch {
 
     public function fetchProjectByID(int $projectID)
     {
-        $sql = "SELECT * FROM `sys3`.`projects` WHERE projectID = ?";
+        $sql = "SELECT `projects`.`projectID`,`projects`.`projectTitle`,`projects`.`projectDesc`, `categories`.`categoryName`, `sub_categories`.`sub_categoryName`, `users`.`username`,GROUP_CONCAT(`skill_name`) as `tags` FROM `sys3`.`projects` INNER JOIN `users` ON `projects`.`UserID` = `users`.`UserID` INNER JOIN `categories` ON `projects`.`CategoryID` = `categories`.`CategoryID` INNER JOIN `sub_categories` ON `projects`.`sub_categoryID` = `sub_categories`.`sub_categoryID` LEFT JOIN `project_skills` ON `project_skills`.`projectID` = `projects`.`projectID` LEFT JOIN `skills` ON `project_skills`.`skillID` = `skills`.`skillID` WHERE `projects`.`projectID` = ? GROUP BY `projects`.`projectID`";
         $query = $this->mysqli->prepare($sql);
     
         if (!$query) {

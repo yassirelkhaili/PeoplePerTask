@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset( $_GET["id"])) {
     use fetchdata\fetch;
     //get projectID
     $projectID = $_GET["id"];
-    $fetch = new fetch($mysqli);
+    $fetch = new Fetch($mysqli);
     $categories = $fetch->fetchCategories();
     $sub_categories = $fetch->fetchSub_Categories();
     $project = $fetch->fetchProjectByID($projectID);

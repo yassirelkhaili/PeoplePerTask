@@ -12,7 +12,7 @@ $data_json = file_get_contents("php://input");
 $method = $_SERVER["REQUEST_METHOD"]; 
 switch ($method) {
     case "GET":
-        $sql = "SELECT `projects`.`projectID`, `projects`.`ProjectTitle`, `projects`.`projectDesc`, `categories`.`categoryName`, `sub_categories`.`sub_categoryName`, `users`.`username` FROM `sys3`.`projects` JOIN `categories` ON `projects`.`CategoryID` = `categories`.`CategoryID` JOIN `sub_categories` ON `projects`.`sub_categoryID` = `sub_categories`.`sub_categoryID` JOIN `users` ON `projects`.`UserID` = `users`.`UserID`";
+        $sql = "SELECT `projects`.`projectID`, `projects`.`projectTitle`, `projects`.`projectDesc`, `categories`.`categoryName`, `sub_categories`.`sub_categoryName`, `users`.`username` FROM `sys3`.`projects` JOIN `categories` ON `projects`.`CategoryID` = `categories`.`CategoryID` JOIN `sub_categories` ON `projects`.`sub_categoryID` = `sub_categories`.`sub_categoryID` JOIN `users` ON `projects`.`UserID` = `users`.`UserID`";
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
             if ($stmt->execute()) {

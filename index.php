@@ -308,10 +308,10 @@ switch ($userInfo["role"]) {
             </div>
             <div class="flex justify-center items-start gap-1 flex-col">
               <div>
-                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl"><?= $freelancer["freelanceName"] ?></p>
+                <p class="text-defaultText dark:text-slate-50 font-poppins font-semibold text-xl"><?= $freelancer["username"] ?></p>
               </div>
               <div>
-                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]"><?= $freelancer["skills"] ?></p>
+                <p class="text-defaultText dark:text-textGrey font-poppins font-normal text-[15px]"></p>
               </div>
             </div>
           </div>
@@ -341,7 +341,7 @@ switch ($userInfo["role"]) {
         <div class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
           <div class="flex justify-center items-center flex-col gap-4">
             <img src="./images/job-logo-1.png.svg" alt="first-job-logo">
-            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl"><?= $project["ProjectTitle"] ?></h3>
+            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl"><?= $project["projectTitle"] ?></h3>
             <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base"><?= $project["username"] ?></p>
           </div>
           <div class="flex justify-center items-center flex-col gap-4 w-full">
@@ -362,7 +362,7 @@ switch ($userInfo["role"]) {
           </div>
           <div class="flex justify-center items-center flex-row w-full gap-4">
             <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="./images/SVG (3).svg" alt="heart-emoji"></div>
-            <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
+            <a href=<?="./src/routes/projectview.php?id=" . $project["projectID"] ?> class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">View Project</a>
           </div>
         </div>
           <?php endforeach; ?>

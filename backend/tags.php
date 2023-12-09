@@ -51,26 +51,10 @@ switch ($method) {
                     exit();
                 }
             }
+            $mysqli->close();
             http_response_code(200);
             echo json_encode(['status'=> 'success','message'=> "Tags and associations inserted successfully"]);
             break;
-        // $sql = "INSERT INTO `sys3`.`projects`(projectTitle, projectDesc, categoryID, sub_categoryID, userID) VALUES(?, ?, ?, ?, ?)";
-        // $stmt = $mysqli->prepare($sql);
-        // if ($stmt) {
-        //     $stmt->bind_param("ssiii",$data->projectTitle, $data->projectDesc, $data->categoryID, $data->sub_categoryID, $data->userID);
-        //     if ($stmt->execute()) {
-        //         http_response_code(201);
-        //         echo json_encode(['status' => 'success', 'message' => 'skills added successfully']);
-        //     } else {
-        //         http_response_code(400);
-        //         echo json_encode(['status'=> 'error','message'=> 'An error was encountered' . $stmt->error]);
-        //     }
-        //     $stmt->close();
-        // } else {
-        //     http_response_code(500);
-        //     echo json_encode(['status'=> 'error','message'=> "Error preparing statement: " . $mysqli->error]);
-        // }
-    break; 
     case "DELETE": 
         $id = $_GET["id"];
         if (isset($id) && is_numeric($id)) {

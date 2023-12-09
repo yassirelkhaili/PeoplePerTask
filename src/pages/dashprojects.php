@@ -415,7 +415,7 @@ const initializeTable = (data) => {
     data: data,
     columns: [
       { data: "projectID" },
-      { data: "ProjectTitle" },
+      { data: "projectTitle" },
       { data: "projectDesc" },
       { data: "categoryName" },
       { data: "sub_categoryName" },
